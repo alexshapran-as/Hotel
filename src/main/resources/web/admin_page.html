@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hotel Admin Page</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css">
+
+    <script src="/js/jquery-3.1.1.min.js"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="/css/bootstrap-grid.css">
+    <link rel="stylesheet" href="/css/jumbotron-narrow.css">
+
+    <style>
+        @font-face {
+            font-family: "Exo2Regular";
+            src: url("css/Exo2Regular.eot");
+            src: url("css/Exo2Regular.eot?#iefix")format("embedded-opentype"),
+            url("css/Exo2Regular.woff") format("woff"),
+            url("css/Exo2Regular.ttf") format("truetype");
+            font-style: normal;
+            font-weight: normal;
+        }
+
+        /*table {*/
+        /*    border-radius: 1000px 1000px 1000px 1000px;*/
+        /*    border: 2px solid #dddddd;*/
+        /*    border-spacing: 0;*/
+        /*    width: 100%;*/
+        /*}*/
+
+        /*th {*/
+        /*    text-align: left;*/
+        /*    padding: 5px;*/
+        /*}*/
+
+        /*tr:nth-child(even) {*/
+        /*    background-color: #dddddd;*/
+        /*}*/
+
+
+        /*.table.table-bordered {*/
+        /*    width: 100% !important*/
+        /*}*/
+
+        /*.split td, .split th {*/
+        /*  border: 1px solid #dddddd;*/
+        /*}*/
+
+        /*.split {*/
+        /*    height: 100%;*/
+        /*    width: 45%;*/
+        /*    overflow-x: hidden;*/
+        /*    display: inline-block;*/
+        /*    background-color: #FDFEFE;*/
+        /*}*/
+    </style>
+</head>
+<body>
+<div id="mainDiv" class="container" style="font-family: Exo2Regular,serif; min-width: 1000px">
+    <div class='modal fade' id='employeesModalWindow' tabindex='-1' role='dialog' aria-hidden='true'>
+        <div class='modal-dialog modal-xlg' style='width: 1200px'>
+            <div class='modal-content'>
+                <div class='modal-header'>
+                    <h1>Сотрудники</h1>
+                </div>
+                <div class='modal-body'>
+                    <table class="table" id="tableForEmployees">
+                        <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>Фамилия</th>
+                            <th>Имя</th>
+                            <th>Отчество</th>
+                            <th>Дата рождения</th>
+                            <th>Серия и номер паспорта<th>
+                            <th>Адрес<th>
+                            <th>Зарплата<th>
+                            <th>Действие<th>
+                        </tr>
+                        </thead>
+                        <tbody id="tableForEmployeesBody">
+                        </tbody>
+                    </table>
+                </div>
+                <div class='modal-footer'>
+                    <button id='addEmployee' type='submit' class='btn btn-success' style='cursor: pointer;margin-left: 5px;'>Добавить сотрудника </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class='modal fade' id='addEmployeeModalWindow' tabindex='-1' role='dialog' aria-hidden='true'>
+        <div class='modal-dialog modal-xlg' style='width: 1200px'>
+            <div class='modal-content'>
+                <div class='modal-header'>
+                    <h1>Добавление Сотрудника</h1>
+                </div>
+                <div class='modal-body'>
+                    <form id="addEmployeeForm" action="/hotel/admin/add_employee"  method="post"  enctype="multipart/form-data" style="font-size: 16px;">
+                        <label for="username" style="font-weight: normal">Username :
+                            <input id="username" name="username" type="text" value="" class="form-control" style="width: 1100px; font-size: 12px;">
+                        </label>
+                        <br>
+                        <label for="password" style="font-weight: normal">Password :
+                            <input id="password" name="password" type="password" value="" class="form-control" style="width: 1100px; font-size: 12px;">
+                        </label>
+                        <br>
+                        <label for="roles" style="font-weight: normal">Должность :
+                            <input id="roles" name="roles" type="text" value="" class="form-control" style="width: 1100px; font-size: 12px;">
+                        </label>
+                        <br>
+                        <label for="lastName" style="font-weight: normal">Фамилия :
+                            <input id="lastName" name="lastName" type="text" value="" class="form-control" style="width: 1100px; font-size: 12px;">
+                        </label>
+                        <br>
+                        <label for="firstName" style="font-weight: normal">Имя :
+                            <input id="firstName" name="firstName" type="text" value="" class="form-control" style="width: 1100px; font-size: 12px;">
+                        </label>
+                        <br>
+                        <label for="surName" style="font-weight: normal">Отчество :
+                            <input id="surName" name="surName" type="text" value="" class="form-control" style="width: 1100px; font-size: 12px;">
+                        </label>
+                        <br>
+                        <label for="birthDate" style="font-weight: normal">Дата рождения :
+                            <input id="birthDate" name="birthDate" type="text" value="" class="form-control" style="width: 1100px; font-size: 12px;">
+                        </label>
+                        <br>
+                        <label for="seriesNumberPassport" style="font-weight: normal">Серия и номер паспорта :
+                            <input id="seriesNumberPassport" name="seriesNumberPassport" type="text" value="" class="form-control" style="width: 1100px; font-size: 12px;">
+                        </label>
+                        <br>
+                        <label for="address" style="font-weight: normal">Адрес :
+                            <input id="address" name="address" type="text" value="" class="form-control" style="width: 1100px; font-size: 12px;">
+                        </label>
+                        <br>
+                        <label for="salary" style="font-weight: normal">Оклад :
+                            <input id="salary" name="salary" type="text" value="" class="form-control" style="width: 1100px; font-size: 12px;">
+                        </label>
+                        <br>
+                        <button id='addEmployeeInModal' type="submit" class="btn btn-success" style='cursor: pointer;margin-left: 5px;'>Добавить</button>
+                    </form>
+                </div>
+                <div class='modal-footer'>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button id='reservations' type='submit' class='btn btn-success' style='cursor: pointer;margin-left: 5px;'>Брони</button>
+    <br>
+    <button id='busyRooms' type='submit' class='btn btn-success' style='cursor: pointer;margin-left: 5px;'>Занятые номера</button>
+    <br>
+    <button id='freeRooms' type='submit' class='btn btn-success' style='cursor: pointer;margin-left: 5px;'>Свободные номера</button>
+    <br>
+    <button id='accommodationInfo' type='submit' class='btn btn-success' style='cursor: pointer;margin-left: 5px;'>Информация о проживании</button>
+    <br>
+    <button id='freeRoomsSearch' type='submit' class='btn btn-success' style='cursor: pointer;margin-left: 5px;'>Поиск свободных номеров</button>
+    <br>
+    <button id='payment' type='submit' class='btn btn-success' style='cursor: pointer;margin-left: 5px;'>Оплата</button>
+    <br>
+    <button id='bill' type='submit' class='btn btn-success' style='cursor: pointer;margin-left: 5px;'>Счет</button>
+    <br>
+    <button id='employees' type='submit' class='btn btn-success' style='cursor: pointer;margin-left: 5px;'>Сотрудники</button>
+</div>
+</body>
+
+<script src="/js/auth.js"></script>
+
+</html>
+<script>
+
+    $(function () {
+
+        $.get('/hotel/admin/check_auth', function(data) {
+           if (data.success) console.log("auth validated");
+        }).catch(err => {
+                if (403 === err.status)
+                    mongoAuth($("#mainDiv"));
+                else
+                    alert("FAIL!\n" + err.responseText);
+        });
+
+        function getEmployeesList() {
+            $.ajax(addCsrfHeader({
+                type: 'post',
+                url: '/hotel/admin/employees_list',
+                async: false,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    if (response.success) {
+                        response.result.map(employee => {
+                            $('#tableForEmployeesBody').append('<tr>');
+                            $('#tableForEmployeesBody').append('<td>' + employee.username + '</td>');
+                            $('#tableForEmployeesBody').append('<td>' + employee.lastName + '</td>');
+                            $('#tableForEmployeesBody').append('<td>' + employee.firstName + '</td>');
+                            $('#tableForEmployeesBody').append('<td>' + employee.surName + '</td>');
+                            $('#tableForEmployeesBody').append('<td>' + employee.birthDate + '</td>');
+                            $('#tableForEmployeesBody').append('<td>' + employee.seriesNumberPassport + '</td>');
+                            $('#tableForEmployeesBody').append('<td>' + employee.address + '</td>');
+                            $('#tableForEmployeesBody').append('<td>' + employee.salary + '</td>');
+                            $('#tableForEmployeesBody').append("<td><button class='deleteEmployee' employeeUserName='" + employee.username + "' style='cursor: pointer;margin-left: 5px;'>Удалить</button></td>");
+                            $('#tableForEmployeesBody').append('</tr>');
+                        });
+                    } else {
+                        alert("Nothing found");
+                    }
+                }
+            }));
+        }
+
+        $("#employees").on("click", function() {
+            $('#employeesModalWindow').modal('show');
+            $('#tableForEmployeesBody').remove();
+            $('#tableForEmployees').append("<tbody id='tableForEmployeesBody' />");
+            getEmployeesList();
+        });
+
+        $("#addEmployee").on("click", function() {
+            $('#addEmployeeModalWindow').modal('show');
+        });
+
+        $("#addEmployeeInModal").on("click", function() {
+            $('#addEmployeeForm').submit(function(e) {
+                $.ajax(addCsrfHeader({
+                    data: new FormData($(this)[0]),
+                    type: $(this).attr('method'),
+                    url: $(this).attr('action'),
+                    async: true,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function(response) {
+                        if (response.success) {
+                            $('#tableForEmployeesBody').remove();
+                            $('#tableForEmployees').append("<tbody id='tableForEmployeesBody' />");
+                            getEmployeesList();
+                        } else {
+                            alert("FAIL!\n" + response.error.description)
+                        }
+                    }
+                })).catch(err => {
+                    if (403 === err.status)
+                        mongoAuth($("#mainDiv"));
+                    else
+                        alert("FAIL!\n" + err.responseText);
+                });
+                e.preventDefault();
+                return false;
+            })
+        });
+
+    });
+</script>
