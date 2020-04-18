@@ -3,10 +3,10 @@ package service
 import akka.http.scaladsl.server.{Directives, Route}
 import api.web.{HttpRouteUtils, UserSessionData}
 import authenticator.{MongoAuthApi, Roles}
-import org.slf4j.LoggerFactory
+//import org.slf4j.LoggerFactory
 
 object MongoApiService extends HttpRouteUtils with Directives {
-  protected val logger = LoggerFactory.getLogger(getClass)
+//  protected val logger = LoggerFactory.getLogger(getClass)
 
   def getRoute(pathPrefix: String): Route =
     respondWithJsonContentType {
@@ -27,7 +27,7 @@ object MongoApiService extends HttpRouteUtils with Directives {
                         }
                       case _ =>
                         println("Authorization for 30 sec")
-                        logger.info("Authorization for 30 sec")
+//                        logger.info("Authorization for 30 sec")
                         setOneLogInSession(UserSessionData(userName, roles)) {
                           complete(getOkResponse)
                         }
@@ -42,14 +42,20 @@ object MongoApiService extends HttpRouteUtils with Directives {
             }
         }
       } ~
-        post("logout") {
           validateRequiredSession { session =>
-            invalidateRequiredSession { ctx =>
-              println(s"Logging out $session")
-              logger.info(s"Logging out $session")
-              ctx.complete(getOkResponse)
-            }
+            post("logout") {
+              invalidateRequiredSession { ctx =>
+                println(s"Logging out $session")
+                //              logger.info(s"Logging out $session")
+                ctx.complete(getOkResponse)
+              }
+            } ~
+                post("check") {
+                  if (MongoAuthApi.hasAccessToWithRoles(pathPrefix, session.groups))
+                    complete(getOkResponse)
+                  else
+                    complete(getErrorResponse(402, "Access denied"))
+                }
           }
-        }
     }
 }

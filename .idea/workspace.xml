@@ -1,7 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3d0faa53-9f20-4c43-8b66-c0cfab831cc1" name="Default Changelist" comment="init" />
+    <list default="true" id="3d0faa53-9f20-4c43-8b66-c0cfab831cc1" name="Default Changelist" comment="init">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/sbt__ch_qos_logback_logback_classic_1_2_3_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/sbt__ch_qos_logback_logback_core_1_2_3_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/sbt__com_fasterxml_jackson_core_jackson_annotations_2_9_0_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/sbt__com_fasterxml_jackson_core_jackson_core_2_9_8_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/sbt__com_fasterxml_jackson_core_jackson_databind_2_9_8_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/sbt__com_typesafe_akka_akka_slf4j_2_12_2_5_25_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/sbt__net_logstash_logback_logstash_logback_encoder_5_3_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/sbt__org_apache_logging_log4j_log4j_api_2_11_2_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/sbt__org_apache_logging_log4j_log4j_core_2_11_2_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/sbt__org_slf4j_slf4j_api_1_7_25_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/mongoSettings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/client/HotelClient.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/room/Room.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/room/RoomReservation.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/util/Utils.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/sbt__org_slf4j_slf4j_api_1_6_0_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/Hotel-build.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/Hotel-build.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/Hotel.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/Hotel.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.sbt" beforeDir="false" afterPath="$PROJECT_DIR$/build.sbt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/hotel_conf.conf" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/hotel_conf.conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/web/admin_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/web/admin_page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/web/js/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/web/js/auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/Scripts.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/Scripts.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/api/web/InMongoDBRefreshTokenStorage.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/api/web/InMongoDBRefreshTokenStorage.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/api/web/UserSessionData.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/api/web/UserSessionData.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/authenticator/UserAuthData.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/authenticator/UserAuthData.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/dao/MainDAO.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/dao/MainDAO.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/dao/MongoUtils.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/dao/MongoUtils.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/service/AdminApiService.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/service/AdminApiService.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/service/MainApiService.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/service/MainApiService.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/service/MongoApiService.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/service/MongoApiService.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/staff/Employee.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/staff/Employee.scala" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -38,12 +74,12 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.last.edited" value="Problems" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Boot">
     <configuration name="Boot" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="Boot" />
       <module name="Hotel" />
@@ -51,9 +87,29 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="CreateRooms" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="CreateRooms" />
+      <module name="Hotel" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Scripts" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="Scripts" />
+      <module name="Hotel" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Scripts" />
+      <item itemvalue="Application.Boot" />
+      <item itemvalue="Application.CreateRooms" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Boot" />
+        <item itemvalue="Application.CreateRooms" />
       </list>
     </recent_temporary>
   </component>
@@ -70,6 +126,14 @@
       <workItem from="1586966488486" duration="248000" />
       <workItem from="1586966739077" duration="71000" />
       <workItem from="1586966914718" duration="239000" />
+      <workItem from="1586968861681" duration="2396000" />
+      <workItem from="1586974528850" duration="1233000" />
+      <workItem from="1586988277986" duration="299000" />
+      <workItem from="1586988593107" duration="25000" />
+      <workItem from="1586988632026" duration="43000" />
+      <workItem from="1586988686140" duration="11715000" />
+      <workItem from="1587079857984" duration="176000" />
+      <workItem from="1587118502974" duration="16574000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1586966948950</created>
@@ -89,37 +153,102 @@
     <option name="LAST_COMMIT_MESSAGE" value="init" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="580" y="102" key="#Scala" timestamp="1586989070236">
+      <screen x="0" y="23" width="1792" height="1020" />
+    </state>
+    <state x="580" y="102" key="#Scala/0.23.1792.1020@0.23.1792.1020" timestamp="1586989070236" />
+    <state x="634" y="303" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog" timestamp="1587215122350">
+      <screen x="0" y="23" width="1792" height="1017" />
+    </state>
+    <state x="634" y="303" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.23.1792.1017@0.23.1792.1017" timestamp="1587215122350" />
+    <state x="634" y="304" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.23.1792.1022@0.23.1792.1022" timestamp="1586999738888" />
+    <state x="366" y="316" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1586974683558">
+      <screen x="0" y="23" width="1792" height="1017" />
+    </state>
+    <state x="366" y="316" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1792.1017@0.23.1792.1017" timestamp="1586974683558" />
+    <state x="593" y="340" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1587228354448">
+      <screen x="0" y="23" width="1792" height="1017" />
+    </state>
+    <state x="593" y="340" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1792.1017@0.23.1792.1017" timestamp="1587228354448" />
+    <state x="639" y="451" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1586974680605">
+      <screen x="0" y="23" width="1792" height="1017" />
+    </state>
+    <state x="639" y="451" key="#com.intellij.ide.util.TreeClassChooserDialog/0.23.1792.1017@0.23.1792.1017" timestamp="1586974680605" />
     <state x="405" y="107" key="CommitChangelistDialog2" timestamp="1586967257792">
       <screen x="0" y="23" width="1792" height="1017" />
     </state>
     <state x="405" y="107" key="CommitChangelistDialog2/0.23.1792.1017@0.23.1792.1017" timestamp="1586967257792" />
-    <state width="1750" height="269" key="GridCell.Tab.0.bottom" timestamp="1586966736182">
+    <state width="1750" height="269" key="GridCell.Tab.0.bottom" timestamp="1587234248918">
       <screen x="0" y="23" width="1792" height="1017" />
     </state>
-    <state width="1750" height="269" key="GridCell.Tab.0.bottom/0.23.1792.1017@0.23.1792.1017" timestamp="1586966736182" />
-    <state width="1750" height="269" key="GridCell.Tab.0.center" timestamp="1586966736182">
+    <state width="1750" height="269" key="GridCell.Tab.0.bottom/0.23.1792.1017@0.23.1792.1017" timestamp="1587234248918" />
+    <state width="1750" height="269" key="GridCell.Tab.0.bottom/0.23.1792.1020@0.23.1792.1020" timestamp="1587230277739" />
+    <state width="1750" height="269" key="GridCell.Tab.0.center" timestamp="1587234248917">
       <screen x="0" y="23" width="1792" height="1017" />
     </state>
-    <state width="1750" height="269" key="GridCell.Tab.0.center/0.23.1792.1017@0.23.1792.1017" timestamp="1586966736182" />
-    <state width="1750" height="269" key="GridCell.Tab.0.left" timestamp="1586966736182">
+    <state width="1750" height="269" key="GridCell.Tab.0.center/0.23.1792.1017@0.23.1792.1017" timestamp="1587234248917" />
+    <state width="1750" height="269" key="GridCell.Tab.0.center/0.23.1792.1020@0.23.1792.1020" timestamp="1587230277738" />
+    <state width="1750" height="269" key="GridCell.Tab.0.left" timestamp="1587234248916">
       <screen x="0" y="23" width="1792" height="1017" />
     </state>
-    <state width="1750" height="269" key="GridCell.Tab.0.left/0.23.1792.1017@0.23.1792.1017" timestamp="1586966736182" />
-    <state width="1750" height="269" key="GridCell.Tab.0.right" timestamp="1586966736182">
+    <state width="1750" height="269" key="GridCell.Tab.0.left/0.23.1792.1017@0.23.1792.1017" timestamp="1587234248916" />
+    <state width="1750" height="269" key="GridCell.Tab.0.left/0.23.1792.1020@0.23.1792.1020" timestamp="1587230277737" />
+    <state width="1750" height="269" key="GridCell.Tab.0.right" timestamp="1587234248917">
       <screen x="0" y="23" width="1792" height="1017" />
     </state>
-    <state width="1750" height="269" key="GridCell.Tab.0.right/0.23.1792.1017@0.23.1792.1017" timestamp="1586966736182" />
-    <state x="384" y="113" key="SettingsEditor" timestamp="1586966571029">
+    <state width="1750" height="269" key="GridCell.Tab.0.right/0.23.1792.1017@0.23.1792.1017" timestamp="1587234248917" />
+    <state width="1750" height="269" key="GridCell.Tab.0.right/0.23.1792.1020@0.23.1792.1020" timestamp="1587230277738" />
+    <state width="1750" height="332" key="GridCell.Tab.1.bottom" timestamp="1587227654047">
       <screen x="0" y="23" width="1792" height="1017" />
     </state>
-    <state x="384" y="113" key="SettingsEditor/0.23.1792.1017@0.23.1792.1017" timestamp="1586966571029" />
+    <state width="1750" height="332" key="GridCell.Tab.1.bottom/0.23.1792.1017@0.23.1792.1017" timestamp="1587227654047" />
+    <state width="1750" height="332" key="GridCell.Tab.1.center" timestamp="1587227654046">
+      <screen x="0" y="23" width="1792" height="1017" />
+    </state>
+    <state width="1750" height="332" key="GridCell.Tab.1.center/0.23.1792.1017@0.23.1792.1017" timestamp="1587227654046" />
+    <state width="1750" height="332" key="GridCell.Tab.1.left" timestamp="1587227654046">
+      <screen x="0" y="23" width="1792" height="1017" />
+    </state>
+    <state width="1750" height="332" key="GridCell.Tab.1.left/0.23.1792.1017@0.23.1792.1017" timestamp="1587227654046" />
+    <state width="1750" height="332" key="GridCell.Tab.1.right" timestamp="1587227654046">
+      <screen x="0" y="23" width="1792" height="1017" />
+    </state>
+    <state width="1750" height="332" key="GridCell.Tab.1.right/0.23.1792.1017@0.23.1792.1017" timestamp="1587227654046" />
+    <state x="511" y="238" key="NewModule_or_Project.wizard" timestamp="1586973704628">
+      <screen x="0" y="23" width="1792" height="1017" />
+    </state>
+    <state x="511" y="238" key="NewModule_or_Project.wizard/0.23.1792.1017@0.23.1792.1017" timestamp="1586973704628" />
+    <state x="384" y="113" key="SettingsEditor" timestamp="1587215850902">
+      <screen x="0" y="23" width="1792" height="1017" />
+    </state>
+    <state x="384" y="113" key="SettingsEditor/0.23.1792.1017@0.23.1792.1017" timestamp="1587215850902" />
     <state x="496" y="271" key="Vcs.Push.Dialog.v2" timestamp="1586966953527">
       <screen x="0" y="23" width="1792" height="1017" />
     </state>
     <state x="496" y="271" key="Vcs.Push.Dialog.v2/0.23.1792.1017@0.23.1792.1017" timestamp="1586966953527" />
+    <state x="100" y="123" width="1592" height="817" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1587228264386">
+      <screen x="0" y="23" width="1792" height="1017" />
+    </state>
+    <state x="100" y="123" width="1592" height="817" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.23.1792.1017@0.23.1792.1017" timestamp="1587228264386" />
+    <state x="100" y="123" width="1592" height="817" key="com.intellij.history.integration.ui.views.SelectionHistoryDialog" timestamp="1587234646036">
+      <screen x="0" y="23" width="1792" height="1017" />
+    </state>
+    <state x="100" y="123" width="1592" height="817" key="com.intellij.history.integration.ui.views.SelectionHistoryDialog/0.23.1792.1017@0.23.1792.1017" timestamp="1587234646036" />
     <state x="684" y="452" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1586967004194">
       <screen x="0" y="23" width="1792" height="1017" />
     </state>
     <state x="684" y="452" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1792.1017@0.23.1792.1017" timestamp="1586967004194" />
+    <state width="600" height="428" key="javadoc.popup" timestamp="1587217471893">
+      <screen x="0" y="23" width="1792" height="1017" />
+    </state>
+    <state width="600" height="428" key="javadoc.popup/0.23.1792.1017@0.23.1792.1017" timestamp="1587217471893" />
+    <state x="264" y="217" key="new project wizard" timestamp="1586973332578">
+      <screen x="0" y="23" width="1792" height="1017" />
+    </state>
+    <state x="264" y="217" key="new project wizard/0.23.1792.1017@0.23.1792.1017" timestamp="1586973332578" />
+    <state x="561" y="248" width="670" height="676" key="search.everywhere.popup" timestamp="1587213146596">
+      <screen x="0" y="23" width="1792" height="1017" />
+    </state>
+    <state x="561" y="248" width="670" height="676" key="search.everywhere.popup/0.23.1792.1017@0.23.1792.1017" timestamp="1587213146596" />
   </component>
 </project>

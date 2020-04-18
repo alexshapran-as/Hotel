@@ -8,17 +8,19 @@ import com.mongodb.casbah.commons.MongoDBObject
 import com.mongodb.casbah.gridfs.GridFS
 import MongoUtils._
 import com.softwaremill.session.RefreshTokenData
-import org.slf4j.LoggerFactory
+import room.Room
+//import org.slf4j.LoggerFactory
 import api.web.UserSessionData
 import authenticator.UserAuthData
 
 object MainDAO {
-  protected val logger = LoggerFactory.getLogger(getClass)
+//  protected val logger = LoggerFactory.getLogger(getClass)
 
   private[dao] val mainDb = getMongoDbConnection("main")
 
   protected val sessionDataColl = mainDb("session_data")
   protected val authDataColl = mainDb("auth_data")
+  protected val roomsColl = mainDb("rooms")
 
   /*
    * gridFS
@@ -71,6 +73,33 @@ object MainDAO {
 
   def removeUserAuthData(username: String): Unit =
     authDataColl.remove(MongoDBObject("username" -> username))
+
+  /*
+   * Rooms data methods
+   */
+
+  def saveRoom(id: String, roomMSA: MSA): Unit =
+    roomsColl.update("_id" $eq id, map2dbo(roomMSA), upsert = true)
+
+  private def findRooms(search: DBObject): List[Room] = {
+    roomsColl.find(search)
+        .map(roomMSA => Room.fromMSA(dbo2map(roomMSA)))
+        .toList
+  }
+
+  def getAllRooms: List[Room] = findRooms(DBObject.empty)
+
+  def getAllRoomsMSA: List[MSA] =
+    roomsColl.find().map(x => dbo2map(x)).toList
+
+  def tryToGetRoom(roomId: String): Option[Room] = {
+    roomsColl.findOne("_id" $eq roomId).map(roomMSA => Room.fromMSA(dbo2map(roomMSA)))
+  }
+
+  def getRoom(roomId: String): Room = {
+    tryToGetRoom(roomId).getOrElse(sys.error(s"Room with id = $roomId not found in db"))
+  }
+
 
   // --------------------------------------------------------------------------------
   // create indexes

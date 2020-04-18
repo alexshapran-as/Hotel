@@ -9,7 +9,7 @@ object Roles extends Enumeration {
 }
 
 case class UserAuthData(username: String, passwordHash: String, roles: List[Roles.Value], employee: Employee) {
-  def toMSA = Map("username" -> username, "passwordHash" -> passwordHash, "roles" -> roles.map(_.toString), "employee" -> employee.toMSA)
+  def toMSA: MSA = Map("username" -> username, "passwordHash" -> passwordHash, "roles" -> roles.map(_.toString), "employee" -> employee.toMSA)
 
   def save = MainDAO.tryToGetUserAuthData(username) match {
     case None =>
@@ -21,16 +21,11 @@ case class UserAuthData(username: String, passwordHash: String, roles: List[Role
 }
 
 case object UserAuthData {
-  def toRole(role: String) = role.toUpperCase match {
-    case "ADMIN" => Roles.ADMIN
-    case "MANAGER" => Roles.MANAGER
-    case "STAFF" => Roles.STAFF
-  }
 
   def fromMSA(msa: MSA): UserAuthData = UserAuthData(
     msa.getOrElse("username", sys.error("Username was not found in db")).toString,
     msa.getOrElse("passwordHash", sys.error("Password was not found in db")).toString,
-    msa.getOrElse("roles", sys.error("Role was not found in db")).asInstanceOf[List[String]].map(role => toRole(role)),
+    msa.getOrElse("roles", sys.error("Role was not found in db")).asInstanceOf[List[String]].map(Roles.withName),
     staff.Employee.fromMSA(msa.getOrElse("employee", sys.error("Employee was not found in db")).asInstanceOf[MSA])
   )
 

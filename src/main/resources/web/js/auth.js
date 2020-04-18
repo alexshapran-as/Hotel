@@ -54,7 +54,7 @@ function mongoAuth(mainDiv) {
         "    <div class='modal fade' id='mongoAuth' tabindex='-1' role='dialog' aria-hidden='true'>\n" +
         "        <div class='modal-dialog modal-xlg' style='width: 1200px'>\n" +
         "            <div class='modal-content'>\n" +
-        "                <div class='modal-header'>\n" +
+        "                <div class='modal-header' id='mongoAuthHeader'>\n" +
         "                </div>\n" +
         "                <div class='modal-body'>\n" +
         "                    <form action='/hotel_auth/login' id='mongoAuthForm' method='post' enctype='multipart/form-data' style='font-size: 16px;margin-left: 40%;margin-right: 40%;'>\n" +
@@ -98,8 +98,9 @@ function mongoAuth(mainDiv) {
                         if (response.success) {
                             $('#mongoAuth').modal('hide');
                             $('#subDiv').remove();
+                            window.location.reload(true);
                         } else {
-                            alert("Username or Password is incorrect!");
+                            $('#mongoAuthHeader').append("<div id='login-fail' style='font-family: Exo2Regular,serif; text-align:center; background-color: #ffcccc; display: block'>Username or Password is incorrect</div>")
                             showMongoAuthModalDilog();
                         }
                     }
@@ -110,4 +111,27 @@ function mongoAuth(mainDiv) {
         })
     }
     showMongoAuthModalDilog();
+}
+
+function authCheck(mainDiv) {
+    $.ajax(addCsrfHeader({
+        type: 'get',
+        url: '/hotel_auth/check',
+        async: false,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function(response) {
+            if (response.success) {
+                console.log("Auth success");
+            } else {
+                mongoAuth(mainDiv);
+            }
+        }
+    })).catch(err => {
+        if (403 === err.status)
+            mongoAuth(mainDiv);
+        else
+            alert("FAIL!\n" + err.responseText);
+    });
 }

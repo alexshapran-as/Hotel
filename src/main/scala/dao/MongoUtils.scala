@@ -5,10 +5,10 @@ import com.mongodb
 import com.mongodb.casbah.Imports.{DBObject, _}
 import com.mongodb.casbah.commons.MongoDBObject
 import configurations.Conf
-import org.slf4j.LoggerFactory
+//import org.slf4j.LoggerFactory
 
 object MongoUtils {
-  protected val logger = LoggerFactory.getLogger(getClass)
+//  protected val logger = LoggerFactory.getLogger(getClass)
 
   private def getMongoAddresses(nameDaoConfig: String) =
     Conf.getMongoAddressesByName(nameDaoConfig).map { tup =>
@@ -30,16 +30,20 @@ object MongoUtils {
 
   def createIndex(coll: MongoCollection, indexes: MSA): Unit = {
     val indexesDBO = map2dbo(indexes)
-    logger.info(s"Create indexes if not exists ${indexesDBO.toString} on ${coll.getName}: started")
+//    logger.info(s"Create indexes if not exists ${indexesDBO.toString} on ${coll.getName}: started")
+    println(s"Create indexes if not exists ${indexesDBO.toString} on ${coll.getName}: started")
     coll.createIndex(indexesDBO, DBObject("background" -> true))
-    logger.info(s"Create indexes if not exists ${indexesDBO.toString} on ${coll.getName}: finished")
+//    logger.info(s"Create indexes if not exists ${indexesDBO.toString} on ${coll.getName}: finished")
+    println(s"Create indexes if not exists ${indexesDBO.toString} on ${coll.getName}: finished")
   }
 
   def createTTLIndex(coll: MongoCollection, indexes: MSA): Unit = {
     val indexesDBO = map2dbo(indexes)
-    logger.info(s"Create indexes if not exists ${indexesDBO.toString} on ${coll.getName}: started")
+//    logger.info(s"Create indexes if not exists ${indexesDBO.toString} on ${coll.getName}: started")
+    println(s"Create indexes if not exists ${indexesDBO.toString} on ${coll.getName}: started")
     coll.createIndex(indexesDBO, DBObject("expireAfterSeconds" -> 0))
-    logger.info(s"Create indexes if not exists ${indexesDBO.toString} on ${coll.getName}: finished")
+//    logger.info(s"Create indexes if not exists ${indexesDBO.toString} on ${coll.getName}: finished")
+    println(s"Create indexes if not exists ${indexesDBO.toString} on ${coll.getName}: finished")
   }
 
   def dbo2map(obj: DBObject): Map[String, Any] = {

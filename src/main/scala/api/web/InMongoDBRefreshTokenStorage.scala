@@ -1,13 +1,13 @@
 package api.web
 
 import com.softwaremill.session.{RefreshTokenData, RefreshTokenLookupResult, RefreshTokenStorage}
-import org.slf4j.{Logger, LoggerFactory}
+//import org.slf4j.{Logger, LoggerFactory}
 
 import scala.concurrent.Future
 import scala.concurrent.duration.Duration
 
 case object InMongoDBRefreshTokenStorage extends RefreshTokenStorage[UserSessionData] {
-  val logger: Logger = LoggerFactory.getLogger(getClass)
+//  val logger: Logger = LoggerFactory.getLogger(getClass)
 
   override def lookup(selector: String): Future[Option[RefreshTokenLookupResult[UserSessionData]]] = {
     Future.successful {
@@ -41,6 +41,7 @@ case object InMongoDBRefreshTokenStorage extends RefreshTokenStorage[UserSession
   }
 
   def log(msg: String): Unit = {
-    logger.info(msg)
+//    logger.info(msg)
+    println(msg)
   }
 }

@@ -4,7 +4,7 @@ import java.util.Date
 
 import Hotel.{MSA, MSS}
 import com.softwaremill.session.{MultiValueSessionSerializer, RefreshTokenData}
-import org.slf4j.LoggerFactory
+//import org.slf4j.LoggerFactory
 import dao.MainDAO
 
 import scala.util.{Failure, Success, Try}
@@ -21,7 +21,7 @@ case class UserSessionData(username: String, groups: List[String]) {
 }
 
 case object UserSessionData {
-  protected val logger = LoggerFactory.getLogger(getClass)
+//  protected val logger = LoggerFactory.getLogger(getClass)
 
   implicit def serializer: MultiValueSessionSerializer[UserSessionData] =
     new MultiValueSessionSerializer(
@@ -48,7 +48,8 @@ case object UserSessionData {
     )
   } match {
     case Failure(e) =>
-      logger.error(s"Error mapping user session data with selector = ${msa("_id").toString} (${e.getMessage})")
+//      logger.error(s"Error mapping user session data with selector = ${msa("_id").toString} (${e.getMessage})")
+      println(s"Error mapping user session data with selector = ${msa("_id").toString} (${e.getMessage})")
       throw e
     case Success(value) =>
       value
@@ -61,7 +62,8 @@ case object UserSessionData {
     )
   } match {
     case Failure(e) =>
-      logger.error(s"Error mapping user session data with selector = ${msa("_id").toString} (${e.getMessage})")
+//      logger.error(s"Error mapping user session data with selector = ${msa("_id").toString} (${e.getMessage})")
+      println(s"Error mapping user session data with selector = ${msa("_id").toString} (${e.getMessage})")
       throw e
     case Success(value) =>
       value
