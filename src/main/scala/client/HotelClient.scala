@@ -35,18 +35,20 @@ case object Client extends HotelClient {
     )
 }
 
-case class GroupOfClients(id: String = Utils.getId, clients: List[Client], description: Option[String] = None) extends HotelClient {
+case class GroupOfClients(id: String = Utils.getId, client: Client, totalCountOfClients: Int, description: Option[String] = None) extends HotelClient {
     def toMsa: MSA = Map(
         "id" -> id,
-        "clients" -> clients.map(_.toMSA),
-        "description" -> description.getOrElse("")
+        "client" -> client.toMSA,
+        "description" -> description.getOrElse(""),
+        "totalCountOfClients" -> totalCountOfClients
     )
 }
 
 case object  GroupOfClients extends HotelClient {
     def fromMSA(msa: MSA): GroupOfClients = GroupOfClients(
         msa("id").toString,
-        msa("clients").asInstanceOf[List[MSA]].map { msa => Client.fromMSA(msa) },
+        Client.fromMSA(msa("client").asInstanceOf[MSA]),
+        msa("totalCountOfClients").toString.toInt,
         if (msa("description").toString.isEmpty) None else Some(msa("description").toString)
     )
 }

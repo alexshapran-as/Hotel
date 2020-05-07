@@ -5,7 +5,7 @@ import java.time.{Instant, ZoneId}
 import java.time.temporal.ChronoUnit
 import java.util.{Calendar, Locale, TimeZone}
 
-import Hotel.MSS
+import Hotel.{MSA, MSS}
 
 object Utils {
     implicit val formats = org.json4s.DefaultFormats.withLong.withDouble.withStrictOptionParsing
@@ -23,6 +23,11 @@ object Utils {
     val defaultTimeZone = TimeZone.getTimeZone(defaultTimeZoneStr)
 
     def getId: String = org.bson.types.ObjectId.get().toString
+
+    implicit class MapItemGetter(msa: MSA) {
+        def getOrError(key: String): Any =
+            msa.getOrElse(key, throw new Exception(s"MapItem '$key' is not defined... Map: $msa"))
+    }
 
     def getDayStartInMillis(millis: Long, timeZone: String = defaultTimeZoneStr): Long = {
         Instant.ofEpochMilli(millis).atZone(ZoneId.of(timeZone))

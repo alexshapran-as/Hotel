@@ -9,40 +9,43 @@ case object MainApiService extends HttpRouteUtils with Directives {
 
     def routingStart =
         CORSSupport.corsHandler {
-            get("js" / Segment) { sourceName =>
-                getFromResource(s"web/js/$sourceName")
-            } ~
-                get("css" / Segment) { sourceName =>
-                    getFromResource(s"web/css/$sourceName")
+            extractRequest { req =>
+                get("js" / Segment) { sourceName =>
+                    getFromResource(s"web/js/$sourceName")
                 } ~
-                tokenCsrfProtectionDirective {
-                    pathPrefix("hotel_auth") {
-                        MongoApiService.getRoute(pathPrefixRole)
+                    get("css" / Segment) { sourceName =>
+                        getFromResource(s"web/css/$sourceName")
                     } ~
-                        pathPrefix("hotel") {
-                            pathPrefix("admin") {
-                                pathPrefixRole = "admin"
-                                AdminApiService.getRoute
-                            } ~
-                                pathPrefix("manager") {
-                                    pathPrefixRole = "manager"
-                                    get("start_page") {
-                                        getFromResource("")
-                                    }
+                    tokenCsrfProtectionDirective {
+                        pathPrefix("hotel_auth") {
+                            MongoApiService.getRoute(pathPrefixRole)
+                        } ~
+                            pathPrefix("hotel") {
+                                pathPrefix("admin") {
+                                    pathPrefixRole = "admin"
+                                    AdminApiService.getRoute
                                 } ~
-                                pathPrefix("staff") {
-                                    pathPrefixRole = "staff"
-                                    get("start_page") {
-                                        getFromResource("")
+                                    pathPrefix("manager") {
+                                        pathPrefixRole = "manager"
+                                        get("start_page") {
+                                            getFromResource("")
+                                        }
+                                    } ~
+                                    pathPrefix("staff") {
+                                        pathPrefixRole = "staff"
+                                        get("start_page") {
+                                            getFromResource("")
+                                        }
+                                    } ~
+                                    pathPrefix("visitor") {
+                                        get("start_page") {
+                                            getFromResource("")
+                                        }
                                     }
-                                } ~
-                                pathPrefix("visitor") {
-                                    get("start_page") {
-                                        getFromResource("")
-                                    }
-                                }
-                        }
-                }
+                            }
+                    }
+            }
+
         }
 
 }

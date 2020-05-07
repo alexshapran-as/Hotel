@@ -84,20 +84,20 @@ case class Room(
 
     def calculateRoomCost(roomExtraOptions: RoomExtraOptions, roomClient: HotelClient): Double = {
         val preTotalSum: Double = defaultCostPerNight +
-            (if (roomExtraOptions.extraBed && roomExtraOptions.child) (defaultCostPerNight / seatsNumber) / 3.0 else if (roomExtraOptions.extraBed) (defaultCostPerNight / seatsNumber) else 0.0) +
+            (if (roomExtraOptions.extraBed && roomExtraOptions.child) defaultCostPerNight / 3.0 else if (roomExtraOptions.extraBed) defaultCostPerNight else 0.0) +
             (if (options.fridge) defaultCostPerNight / 10.0 else 0.0) +
             (if (options.miniBar) defaultCostPerNight / 5.0 else 0.0) +
             (if (options.tv) defaultCostPerNight / 10.0 else 0.0) +
-            (if (roomExtraOptions.child && !roomExtraOptions.extraBed) -((defaultCostPerNight / seatsNumber) / 2.0) else 0.0) +
+            (if (roomExtraOptions.child && !roomExtraOptions.extraBed) - (defaultCostPerNight / 2.0) else 0.0) +
             (if (options.gardenView || options.mountainView || options.seaView) defaultCostPerNight / 4.0 else 0.0) +
             (if (roomExtraOptions.bedBreakfast) breakfastCost else 0.0) +
             (if (roomExtraOptions.allInclusive) allInclusiveCost else 0.0)
         val sale = roomClient match {
             case _: Client =>
                 0.0
-            case group: GroupOfClients if group.clients.length > 5 && group.clients.length < 10 =>
+            case group: GroupOfClients if group.totalCountOfClients > 5 && group.totalCountOfClients < 10 =>
                 preTotalSum * 0.1
-            case group: GroupOfClients if group.clients.length > 10 =>
+            case group: GroupOfClients if group.totalCountOfClients > 10 =>
                 preTotalSum * 0.3
             case _ =>
                 0.0
@@ -113,10 +113,12 @@ case class Room(
         "seatsNumber" -> seatsNumber,
         "options" -> options.toMSA,
         "defaultCostPerNight" -> defaultCostPerNight,
-        "reservations" -> reservations.map { reservation => reservation.toMSA ++ Map("totalCost" ->calculateRoomCost(reservation.extraOptions, reservation.client))}
+        "reservations" -> reservations.map { reservation => reservation.toMSA ++ Map("totalCost" -> calculateRoomCost(reservation.extraOptions, reservation.client))}
     )
 
     def save = MainDAO.saveRoom(id, this.toMSA)
+
+    def addReservation(reservation: RoomReservation) = this.reservations = this.reservations :+ reservation
 }
 
 case object Room {
@@ -133,4 +135,6 @@ case object Room {
     def findAllRooms: List[Room] = MainDAO.getAllRooms
 
     def findAllRoomsMSA: List[MSA] = MainDAO.getAllRoomsMSA
+
+    def findRoomById(roomId: String): Room = MainDAO.getRoom(roomId)
 }

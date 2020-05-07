@@ -1,42 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3d0faa53-9f20-4c43-8b66-c0cfab831cc1" name="Default Changelist" comment="init">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/sbt__ch_qos_logback_logback_classic_1_2_3_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/sbt__ch_qos_logback_logback_core_1_2_3_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/sbt__com_fasterxml_jackson_core_jackson_annotations_2_9_0_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/sbt__com_fasterxml_jackson_core_jackson_core_2_9_8_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/sbt__com_fasterxml_jackson_core_jackson_databind_2_9_8_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/sbt__com_typesafe_akka_akka_slf4j_2_12_2_5_25_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/sbt__net_logstash_logback_logstash_logback_encoder_5_3_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/sbt__org_apache_logging_log4j_log4j_api_2_11_2_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/sbt__org_apache_logging_log4j_log4j_core_2_11_2_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/sbt__org_slf4j_slf4j_api_1_7_25_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/mongoSettings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/client/HotelClient.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/room/Room.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/room/RoomReservation.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/util/Utils.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/sbt__org_slf4j_slf4j_api_1_6_0_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/Hotel-build.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/Hotel-build.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/Hotel.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/Hotel.iml" afterDir="false" />
+    <list default="true" id="3d0faa53-9f20-4c43-8b66-c0cfab831cc1" name="Default Changelist" comment="rooms, reservations, busy/free rooms, accommodations">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/web/css/daterangepicker.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/web/daterangepicker/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/web/daterangepicker/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/web/daterangepicker/bower.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/web/daterangepicker/daterangepicker.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/web/daterangepicker/daterangepicker.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/web/daterangepicker/demo.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/web/daterangepicker/drp.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/web/daterangepicker/example/amd/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/web/daterangepicker/example/amd/main.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/web/daterangepicker/example/amd/require.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/web/daterangepicker/example/browserify/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/web/daterangepicker/example/browserify/bundle.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/web/daterangepicker/example/browserify/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/web/daterangepicker/example/browserify/main.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/web/daterangepicker/moment.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/web/daterangepicker/package.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/web/daterangepicker/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/web/daterangepicker/website/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/web/daterangepicker/website/website.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/web/daterangepicker/website/website.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/web/js/daterangepicker.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/web/js/moment.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.sbt" beforeDir="false" afterPath="$PROJECT_DIR$/build.sbt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/hotel_conf.conf" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/hotel_conf.conf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/web/admin_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/web/admin_page.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/web/js/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/web/js/auth.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/Scripts.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/Scripts.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/api/web/InMongoDBRefreshTokenStorage.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/api/web/InMongoDBRefreshTokenStorage.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/api/web/UserSessionData.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/api/web/UserSessionData.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/authenticator/UserAuthData.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/authenticator/UserAuthData.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/dao/MainDAO.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/dao/MainDAO.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/dao/MongoUtils.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/dao/MongoUtils.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/client/HotelClient.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/client/HotelClient.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/room/Room.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/room/Room.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/service/AdminApiService.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/service/AdminApiService.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/service/MainApiService.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/service/MainApiService.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/service/MongoApiService.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/service/MongoApiService.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/staff/Employee.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/staff/Employee.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/util/Utils.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/util/Utils.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,26 +56,40 @@
       </list>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="SET_USER_NAME_GLOBALLY" value="false" />
   </component>
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="1" />
   </component>
   <component name="ProjectId" id="1aaGrDGceLCyKKu5RQvcZ5fFfOG" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/web/css" />
     <property name="project.structure.last.edited" value="Problems" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/web/css" />
+      <recent name="$PROJECT_DIR$/src/main/resources/web/js" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/web" />
+    </key>
   </component>
   <component name="RunManager" selected="Application.Boot">
     <configuration name="Boot" type="Application" factoryName="Application" temporary="true">
@@ -101,10 +113,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ScalaRepl" type="ScalaScriptConsoleRunConfiguration" factoryName="Scala Console" show_console_on_std_err="false" show_console_on_std_out="false">
+      <module name="Hotel" />
+      <option name="allowRunningInParallel" value="false" />
+      <option name="javaOptions" value="-Djline.terminal=NONE" />
+      <option name="myConsoleArgs" value="-usejavacp" />
+      <option name="workingDirectory" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.Scripts" />
       <item itemvalue="Application.Boot" />
       <item itemvalue="Application.CreateRooms" />
+      <item itemvalue="Scala REPL.ScalaRepl" />
     </list>
     <recent_temporary>
       <list>
@@ -133,7 +156,14 @@
       <workItem from="1586988632026" duration="43000" />
       <workItem from="1586988686140" duration="11715000" />
       <workItem from="1587079857984" duration="176000" />
-      <workItem from="1587118502974" duration="16574000" />
+      <workItem from="1587118502974" duration="39722000" />
+      <workItem from="1587824643075" duration="37022000" />
+      <workItem from="1588065198416" duration="595000" />
+      <workItem from="1588496334108" duration="16032000" />
+      <workItem from="1588695031385" duration="2700000" />
+      <workItem from="1588810631323" duration="3971000" />
+      <workItem from="1588814626460" duration="377000" />
+      <workItem from="1588850922658" duration="614000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1586966948950</created>
@@ -142,30 +172,47 @@
       <option name="project" value="LOCAL" />
       <updated>1586966948951</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="rooms">
+      <created>1587235136759</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1587235136759</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="2" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <ignored-roots>
+      <path value="$PROJECT_DIR$" />
+    </ignored-roots>
     <MESSAGE value="init" />
-    <option name="LAST_COMMIT_MESSAGE" value="init" />
+    <MESSAGE value="rooms" />
+    <MESSAGE value="rooms, reservations, busy/free rooms, accommodations" />
+    <option name="LAST_COMMIT_MESSAGE" value="rooms, reservations, busy/free rooms, accommodations" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="779" y="401" key="#Notifications" timestamp="1588851242068">
+      <screen x="0" y="23" width="1792" height="1020" />
+    </state>
+    <state x="779" y="401" key="#Notifications/0.23.1792.1020@0.23.1792.1020" timestamp="1588851242068" />
     <state x="580" y="102" key="#Scala" timestamp="1586989070236">
       <screen x="0" y="23" width="1792" height="1020" />
     </state>
     <state x="580" y="102" key="#Scala/0.23.1792.1020@0.23.1792.1020" timestamp="1586989070236" />
-    <state x="634" y="303" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog" timestamp="1587215122350">
+    <state x="634" y="303" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog" timestamp="1587894766989">
       <screen x="0" y="23" width="1792" height="1017" />
     </state>
-    <state x="634" y="303" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.23.1792.1017@0.23.1792.1017" timestamp="1587215122350" />
+    <state x="634" y="303" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.23.1792.1017@0.23.1792.1017" timestamp="1587894766989" />
     <state x="634" y="304" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.23.1792.1022@0.23.1792.1022" timestamp="1586999738888" />
-    <state x="366" y="316" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1586974683558">
+    <state x="366" y="316" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1587407477605">
       <screen x="0" y="23" width="1792" height="1017" />
     </state>
-    <state x="366" y="316" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1792.1017@0.23.1792.1017" timestamp="1586974683558" />
+    <state x="366" y="316" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1792.1017@0.23.1792.1017" timestamp="1587407477605" />
     <state x="593" y="340" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1587228354448">
       <screen x="0" y="23" width="1792" height="1017" />
     </state>
@@ -174,58 +221,76 @@
       <screen x="0" y="23" width="1792" height="1017" />
     </state>
     <state x="639" y="451" key="#com.intellij.ide.util.TreeClassChooserDialog/0.23.1792.1017@0.23.1792.1017" timestamp="1586974680605" />
-    <state x="405" y="107" key="CommitChangelistDialog2" timestamp="1586967257792">
+    <state x="295" y="154" key="CommitChangelistDialog2" timestamp="1588814918229">
       <screen x="0" y="23" width="1792" height="1017" />
     </state>
-    <state x="405" y="107" key="CommitChangelistDialog2/0.23.1792.1017@0.23.1792.1017" timestamp="1586967257792" />
-    <state width="1750" height="269" key="GridCell.Tab.0.bottom" timestamp="1587234248918">
+    <state x="295" y="154" key="CommitChangelistDialog2/0.23.1792.1017@0.23.1792.1017" timestamp="1588814918229" />
+    <state x="769" y="436" key="Github.ShareDialog" timestamp="1588851520734">
+      <screen x="0" y="23" width="1792" height="1022" />
+    </state>
+    <state x="769" y="435" key="Github.ShareDialog/0.23.1792.1020@0.23.1792.1020" timestamp="1588851218089" />
+    <state x="769" y="436" key="Github.ShareDialog/0.23.1792.1022@0.23.1792.1022" timestamp="1588851520733" />
+    <state width="1750" height="268" key="GridCell.Tab.0.bottom" timestamp="1588814617617">
       <screen x="0" y="23" width="1792" height="1017" />
     </state>
-    <state width="1750" height="269" key="GridCell.Tab.0.bottom/0.23.1792.1017@0.23.1792.1017" timestamp="1587234248918" />
-    <state width="1750" height="269" key="GridCell.Tab.0.bottom/0.23.1792.1020@0.23.1792.1020" timestamp="1587230277739" />
-    <state width="1750" height="269" key="GridCell.Tab.0.center" timestamp="1587234248917">
+    <state width="1750" height="268" key="GridCell.Tab.0.bottom/0.23.1792.1017@0.23.1792.1017" timestamp="1588814617617" />
+    <state width="1750" height="271" key="GridCell.Tab.0.bottom/0.23.1792.1020@0.23.1792.1020" timestamp="1588759121102" />
+    <state width="1750" height="271" key="GridCell.Tab.0.bottom/0.23.1792.1024@0.23.1792.1024" timestamp="1588697597766" />
+    <state width="1750" height="271" key="GridCell.Tab.0.bottom/0.23.1792.1026@0.23.1792.1026" timestamp="1588695938807" />
+    <state width="1750" height="268" key="GridCell.Tab.0.center" timestamp="1588814617616">
       <screen x="0" y="23" width="1792" height="1017" />
     </state>
-    <state width="1750" height="269" key="GridCell.Tab.0.center/0.23.1792.1017@0.23.1792.1017" timestamp="1587234248917" />
-    <state width="1750" height="269" key="GridCell.Tab.0.center/0.23.1792.1020@0.23.1792.1020" timestamp="1587230277738" />
-    <state width="1750" height="269" key="GridCell.Tab.0.left" timestamp="1587234248916">
+    <state width="1750" height="268" key="GridCell.Tab.0.center/0.23.1792.1017@0.23.1792.1017" timestamp="1588814617616" />
+    <state width="1750" height="271" key="GridCell.Tab.0.center/0.23.1792.1020@0.23.1792.1020" timestamp="1588759121101" />
+    <state width="1750" height="271" key="GridCell.Tab.0.center/0.23.1792.1024@0.23.1792.1024" timestamp="1588697597765" />
+    <state width="1750" height="271" key="GridCell.Tab.0.center/0.23.1792.1026@0.23.1792.1026" timestamp="1588695938806" />
+    <state width="1750" height="268" key="GridCell.Tab.0.left" timestamp="1588814617615">
       <screen x="0" y="23" width="1792" height="1017" />
     </state>
-    <state width="1750" height="269" key="GridCell.Tab.0.left/0.23.1792.1017@0.23.1792.1017" timestamp="1587234248916" />
-    <state width="1750" height="269" key="GridCell.Tab.0.left/0.23.1792.1020@0.23.1792.1020" timestamp="1587230277737" />
-    <state width="1750" height="269" key="GridCell.Tab.0.right" timestamp="1587234248917">
+    <state width="1750" height="268" key="GridCell.Tab.0.left/0.23.1792.1017@0.23.1792.1017" timestamp="1588814617615" />
+    <state width="1750" height="271" key="GridCell.Tab.0.left/0.23.1792.1020@0.23.1792.1020" timestamp="1588759121101" />
+    <state width="1750" height="271" key="GridCell.Tab.0.left/0.23.1792.1024@0.23.1792.1024" timestamp="1588697597765" />
+    <state width="1750" height="271" key="GridCell.Tab.0.left/0.23.1792.1026@0.23.1792.1026" timestamp="1588695938806" />
+    <state width="1750" height="268" key="GridCell.Tab.0.right" timestamp="1588814617617">
       <screen x="0" y="23" width="1792" height="1017" />
     </state>
-    <state width="1750" height="269" key="GridCell.Tab.0.right/0.23.1792.1017@0.23.1792.1017" timestamp="1587234248917" />
-    <state width="1750" height="269" key="GridCell.Tab.0.right/0.23.1792.1020@0.23.1792.1020" timestamp="1587230277738" />
-    <state width="1750" height="332" key="GridCell.Tab.1.bottom" timestamp="1587227654047">
+    <state width="1750" height="268" key="GridCell.Tab.0.right/0.23.1792.1017@0.23.1792.1017" timestamp="1588814617617" />
+    <state width="1750" height="271" key="GridCell.Tab.0.right/0.23.1792.1020@0.23.1792.1020" timestamp="1588759121102" />
+    <state width="1750" height="271" key="GridCell.Tab.0.right/0.23.1792.1024@0.23.1792.1024" timestamp="1588697597766" />
+    <state width="1750" height="271" key="GridCell.Tab.0.right/0.23.1792.1026@0.23.1792.1026" timestamp="1588695938807" />
+    <state width="1750" height="332" key="GridCell.Tab.1.bottom" timestamp="1588589151741">
       <screen x="0" y="23" width="1792" height="1017" />
     </state>
-    <state width="1750" height="332" key="GridCell.Tab.1.bottom/0.23.1792.1017@0.23.1792.1017" timestamp="1587227654047" />
-    <state width="1750" height="332" key="GridCell.Tab.1.center" timestamp="1587227654046">
+    <state width="1750" height="332" key="GridCell.Tab.1.bottom/0.23.1792.1017@0.23.1792.1017" timestamp="1588589151741" />
+    <state width="1750" height="332" key="GridCell.Tab.1.bottom/0.23.1792.1020@0.23.1792.1020" timestamp="1588499921828" />
+    <state width="1750" height="332" key="GridCell.Tab.1.center" timestamp="1588589151740">
       <screen x="0" y="23" width="1792" height="1017" />
     </state>
-    <state width="1750" height="332" key="GridCell.Tab.1.center/0.23.1792.1017@0.23.1792.1017" timestamp="1587227654046" />
-    <state width="1750" height="332" key="GridCell.Tab.1.left" timestamp="1587227654046">
+    <state width="1750" height="332" key="GridCell.Tab.1.center/0.23.1792.1017@0.23.1792.1017" timestamp="1588589151740" />
+    <state width="1750" height="332" key="GridCell.Tab.1.center/0.23.1792.1020@0.23.1792.1020" timestamp="1588499921828" />
+    <state width="1750" height="332" key="GridCell.Tab.1.left" timestamp="1588589151740">
       <screen x="0" y="23" width="1792" height="1017" />
     </state>
-    <state width="1750" height="332" key="GridCell.Tab.1.left/0.23.1792.1017@0.23.1792.1017" timestamp="1587227654046" />
-    <state width="1750" height="332" key="GridCell.Tab.1.right" timestamp="1587227654046">
+    <state width="1750" height="332" key="GridCell.Tab.1.left/0.23.1792.1017@0.23.1792.1017" timestamp="1588589151740" />
+    <state width="1750" height="332" key="GridCell.Tab.1.left/0.23.1792.1020@0.23.1792.1020" timestamp="1588499921827" />
+    <state width="1750" height="332" key="GridCell.Tab.1.right" timestamp="1588589151740">
       <screen x="0" y="23" width="1792" height="1017" />
     </state>
-    <state width="1750" height="332" key="GridCell.Tab.1.right/0.23.1792.1017@0.23.1792.1017" timestamp="1587227654046" />
+    <state width="1750" height="332" key="GridCell.Tab.1.right/0.23.1792.1017@0.23.1792.1017" timestamp="1588589151740" />
+    <state width="1750" height="332" key="GridCell.Tab.1.right/0.23.1792.1020@0.23.1792.1020" timestamp="1588499921828" />
     <state x="511" y="238" key="NewModule_or_Project.wizard" timestamp="1586973704628">
       <screen x="0" y="23" width="1792" height="1017" />
     </state>
     <state x="511" y="238" key="NewModule_or_Project.wizard/0.23.1792.1017@0.23.1792.1017" timestamp="1586973704628" />
-    <state x="384" y="113" key="SettingsEditor" timestamp="1587215850902">
+    <state x="384" y="113" key="SettingsEditor" timestamp="1588851200247">
+      <screen x="0" y="23" width="1792" height="1020" />
+    </state>
+    <state x="384" y="113" key="SettingsEditor/0.23.1792.1017@0.23.1792.1017" timestamp="1588814803977" />
+    <state x="384" y="113" key="SettingsEditor/0.23.1792.1020@0.23.1792.1020" timestamp="1588851200247" />
+    <state x="496" y="271" key="Vcs.Push.Dialog.v2" timestamp="1587235141350">
       <screen x="0" y="23" width="1792" height="1017" />
     </state>
-    <state x="384" y="113" key="SettingsEditor/0.23.1792.1017@0.23.1792.1017" timestamp="1587215850902" />
-    <state x="496" y="271" key="Vcs.Push.Dialog.v2" timestamp="1586966953527">
-      <screen x="0" y="23" width="1792" height="1017" />
-    </state>
-    <state x="496" y="271" key="Vcs.Push.Dialog.v2/0.23.1792.1017@0.23.1792.1017" timestamp="1586966953527" />
+    <state x="496" y="271" key="Vcs.Push.Dialog.v2/0.23.1792.1017@0.23.1792.1017" timestamp="1587235141350" />
     <state x="100" y="123" width="1592" height="817" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1587228264386">
       <screen x="0" y="23" width="1792" height="1017" />
     </state>
@@ -246,9 +311,9 @@
       <screen x="0" y="23" width="1792" height="1017" />
     </state>
     <state x="264" y="217" key="new project wizard/0.23.1792.1017@0.23.1792.1017" timestamp="1586973332578" />
-    <state x="561" y="248" width="670" height="676" key="search.everywhere.popup" timestamp="1587213146596">
+    <state x="561" y="248" width="670" height="676" key="search.everywhere.popup" timestamp="1587927118329">
       <screen x="0" y="23" width="1792" height="1017" />
     </state>
-    <state x="561" y="248" width="670" height="676" key="search.everywhere.popup/0.23.1792.1017@0.23.1792.1017" timestamp="1587213146596" />
+    <state x="561" y="248" width="670" height="676" key="search.everywhere.popup/0.23.1792.1017@0.23.1792.1017" timestamp="1587927118329" />
   </component>
 </project>
