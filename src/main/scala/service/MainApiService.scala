@@ -16,33 +16,36 @@ case object MainApiService extends HttpRouteUtils with Directives {
                     get("css" / Segment) { sourceName =>
                         getFromResource(s"web/css/$sourceName")
                     } ~
+                    get("images" / Segment) { sourceName =>
+                        getFromResource(s"web/images/$sourceName")
+                    } ~
+                    pathPrefix("hotel_auth") {
+                        MongoApiService.getRoute(pathPrefixRole)
+                    } ~
                     tokenCsrfProtectionDirective {
-                        pathPrefix("hotel_auth") {
-                            MongoApiService.getRoute(pathPrefixRole)
-                        } ~
-                            pathPrefix("hotel") {
-                                pathPrefix("admin") {
-                                    pathPrefixRole = "admin"
-                                    AdminApiService.getRoute
-                                } ~
-                                    pathPrefix("manager") {
-                                        pathPrefixRole = "manager"
-                                        get("start_page") {
-                                            getFromResource("")
-                                        }
-                                    } ~
-                                    pathPrefix("staff") {
-                                        pathPrefixRole = "staff"
-                                        get("start_page") {
-                                            getFromResource("")
-                                        }
-                                    } ~
-                                    pathPrefix("visitor") {
-                                        get("start_page") {
-                                            getFromResource("")
-                                        }
+                        pathPrefix("hotel") {
+                            pathPrefix("admin") {
+                                pathPrefixRole = "admin"
+                                AdminApiService.getRoute
+                            } ~
+                                pathPrefix("manager") {
+                                    pathPrefixRole = "manager"
+                                    get("start_page") {
+                                        getFromResource("")
                                     }
-                            }
+                                } ~
+                                pathPrefix("staff") {
+                                    pathPrefixRole = "staff"
+                                    get("start_page") {
+                                        getFromResource("")
+                                    }
+                                } ~
+                                pathPrefix("visitor") {
+                                    get("start_page") {
+                                        getFromResource("")
+                                    }
+                                }
+                        }
                     }
             }
 

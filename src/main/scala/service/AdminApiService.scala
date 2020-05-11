@@ -139,26 +139,29 @@ object AdminApiService extends HttpRouteUtils with Directives {
                         complete(getOkResponse(UserAuthData.findAllEmployees))
                     } ~
                         post("delete_employee") {
-                            formField('username.as[String]) {
-                                case userName =>
-                                    UserAuthData.delete(userName)
-                                    complete(getOkResponse)
+                            extractPostRequest { case (postStr, postMsa) =>
+                                UserAuthData.delete(postMsa("userName").toString)
+                                complete(getOkResponse)
                             }
                         } ~
                         post("add_employee") {
-                            formFields(
-                                'username.as[String], 'password.as[String], 'roles.as[String],
-                                'lastName.as[String], 'firstName.as[String], 'surName.as[String],
-                                'birthDate.as[String], 'seriesNumberPassport.as[String], 'address.as[String], 'salary.as[String]
-                            ) {
-                                case (userName, password, rolesStr,
-                                lastName, firstName, surName, birthDate, seriesNumberPassport, address, salary) =>
-                                    if (UserAuthData.create(userName, password, rolesStr.split(",").toList.map(Roles.withName),
-                                        Employee(lastName, firstName, surName, birthDate, seriesNumberPassport, address, salary)).save) {
-                                        complete(getOkResponse)
-                                    } else {
-                                        complete(getErrorResponse(400, "User with this username already exists"))
-                                    }
+                            extractPostRequest { case (postStr, postMsa) =>
+                                val userName = postMsa.getOrError("userName").toString
+                                val password = postMsa.getOrError("password").toString
+                                val rolesStr = postMsa.getOrError("roles").toString
+                                val lastName = postMsa.getOrError("lastName").toString
+                                val firstName = postMsa.getOrError("firstName").toString
+                                val surName = postMsa.getOrError("surName").toString
+                                val birthDate = postMsa.getOrError("birthDate").toString
+                                val seriesNumberPassport = postMsa.getOrError("seriesNumberPassport").toString
+                                val address = postMsa.getOrError("address").toString
+                                val salary = postMsa.getOrError("salary").toString
+                                if (UserAuthData.create(userName, password, rolesStr.split(",").toList.map(Roles.withName),
+                                    Employee(lastName, firstName, surName, birthDate, seriesNumberPassport, address, salary)).save) {
+                                    complete(getOkResponse)
+                                } else {
+                                    complete(getErrorResponse(400, "User with this username already exists"))
+                                }
 
                             }
                         } ~
@@ -188,26 +191,26 @@ object AdminApiService extends HttpRouteUtils with Directives {
                                     val countOfDays = Utils.getAllPartsOfDateAsMap(Utils.formattedDateToMillis(checkOutDate), "checkOutDate")("checkOutDate.day").toLong -
                                         Utils.getAllPartsOfDateAsMap(Utils.formattedDateToMillis(checkInDate), "checkInDate")("checkInDate.day").toLong
                                     val totalCost = Room.fromMSA(msa).calculateRoomCost(reservation.extraOptions, reservation.client)
-                                    newListMsa :+ msa ++ fillRommDescription(msa) ++ Map("checkInDate" -> checkInDate, "checkOutDate" -> checkOutDate, "totalCost" -> totalCost * countOfDays, "fio" -> fio)
+                                    newListMsa :+ msa ++ fillRommDescription(msa) ++ Map("checkInDate" -> checkInDate, "checkOutDate" -> checkOutDate, "totalCost" -> totalCost * (countOfDays + 1), "fio" -> fio)
                                 }
                             }.filter(msa => msa("fio").toString.nonEmpty)
                             complete(getOkResponse(roomsList))
                         } ~
                         post("accommodation_info_list") {
-                            val currentDateMillis = System.currentTimeMillis()
+                            val currentDateMillis = Utils.getDayStartInMillis(System.currentTimeMillis())
                             val roomsList: List[MSA] = Room.findAllRoomsMSA.filter { msa =>
                                 msa("reservations").asInstanceOf[List[MSA]] match {
                                     case List() =>
                                         false
                                     case reservations =>
-                                        reservations.foldLeft(true) { (busyRoom, reservation) =>
+                                        reservations.foldLeft(false) { (busyRoom, reservation) =>
                                             busyRoom match {
-                                                case false =>
-                                                    busyRoom
                                                 case true =>
+                                                    busyRoom
+                                                case false =>
                                                     val reservedCheckInDate = Utils.formattedDateToMillis(reservation("checkInDate").toString)
                                                     val reservedCheckOutDate = Utils.formattedDateToMillis(reservation("checkOutDate").toString)
-                                                    if (currentDateMillis >= reservedCheckInDate && currentDateMillis < reservedCheckOutDate) {
+                                                    if (currentDateMillis >= reservedCheckInDate && currentDateMillis <= reservedCheckOutDate) {
                                                         true
                                                     } else {
                                                         false
@@ -216,7 +219,15 @@ object AdminApiService extends HttpRouteUtils with Directives {
                                         }
                                 }
                             }.foldLeft(List.empty[MSA]) { (newRoomsList, msa) =>
-                                newRoomsList ++ msa("reservations").asInstanceOf[List[MSA]].foldLeft(List.empty[MSA]) { (newListMsa, reservationMsa) =>
+                                newRoomsList ++ msa("reservations").asInstanceOf[List[MSA]].filter { reservation =>
+                                    val reservedCheckInDate = Utils.formattedDateToMillis(reservation("checkInDate").toString)
+                                    val reservedCheckOutDate = Utils.formattedDateToMillis(reservation("checkOutDate").toString)
+                                    if (currentDateMillis >= reservedCheckInDate && currentDateMillis <= reservedCheckOutDate) {
+                                        true
+                                    } else {
+                                        false
+                                    }
+                                }.foldLeft(List.empty[MSA]) { (newListMsa, reservationMsa) =>
                                     val reservation = RoomReservation.fromMSA(reservationMsa)
                                     val (checkInDate, checkOutDate) = (reservation.checkInDate, reservation.checkOutDate)
                                     val (fio, birthDate, seriesNumberPassport, address) = reservation.client match {
@@ -253,7 +264,7 @@ object AdminApiService extends HttpRouteUtils with Directives {
                                     val totalCost = Room.fromMSA(msa).calculateRoomCost(reservation.extraOptions, reservation.client)
                                     newListMsa :+ msa ++ fillRommDescription(msa) ++
                                         Map("checkInDate" -> checkInDate, "checkOutDate" -> checkOutDate,
-                                            "totalCost" -> totalCost * countOfDays, "fio" -> fio,
+                                            "totalCost" -> totalCost * (countOfDays + 1), "fio" -> fio,
                                             "seriesNumberPassport" -> seriesNumberPassport, "birthDate" -> birthDate, "address" -> address,
                                             "extraOptions" -> extraOptions.mkString(","))
                                 }
@@ -261,20 +272,20 @@ object AdminApiService extends HttpRouteUtils with Directives {
                             complete(getOkResponse(roomsList))
                         } ~
                         post("busy_rooms_list") {
-                            val currentDateMillis = System.currentTimeMillis()
+                            val currentDateMillis = Utils.getDayStartInMillis(System.currentTimeMillis())
                             val roomsList = Room.findAllRoomsMSA.filter { msa =>
                                 msa("reservations").asInstanceOf[List[MSA]] match {
                                     case List() =>
                                         false
                                     case reservations =>
-                                        reservations.foldLeft(true) { (busyRoom, reservation) =>
+                                        reservations.foldLeft(false) { (busyRoom, reservation) =>
                                             busyRoom match {
-                                                case false =>
-                                                    busyRoom
                                                 case true =>
+                                                    busyRoom
+                                                case false =>
                                                     val reservedCheckInDate = Utils.formattedDateToMillis(reservation("checkInDate").toString)
                                                     val reservedCheckOutDate = Utils.formattedDateToMillis(reservation("checkOutDate").toString)
-                                                    if (currentDateMillis >= reservedCheckInDate && currentDateMillis < reservedCheckOutDate) {
+                                                    if (currentDateMillis >= reservedCheckInDate && currentDateMillis <= reservedCheckOutDate) {
                                                         true
                                                     } else {
                                                         false
@@ -288,7 +299,7 @@ object AdminApiService extends HttpRouteUtils with Directives {
                             complete(getOkResponse(roomsList))
                         } ~
                         post("free_rooms_list") {
-                            val currentDateMillis = System.currentTimeMillis()
+                            val currentDateMillis = Utils.getDayStartInMillis(System.currentTimeMillis())
                             val roomsList = Room.findAllRoomsMSA.filter { msa =>
                                 msa("reservations").asInstanceOf[List[MSA]].foldLeft(true) { (freeRoom, reservation) =>
                                     freeRoom match {
@@ -297,7 +308,7 @@ object AdminApiService extends HttpRouteUtils with Directives {
                                         case true =>
                                             val reservedCheckInDate = Utils.formattedDateToMillis(reservation("checkInDate").toString)
                                             val reservedCheckOutDate = Utils.formattedDateToMillis(reservation("checkOutDate").toString)
-                                            if (currentDateMillis >= reservedCheckInDate && currentDateMillis < reservedCheckOutDate) {
+                                            if (currentDateMillis >= reservedCheckInDate && currentDateMillis <= reservedCheckOutDate) {
                                                 false
                                             } else {
                                                 true
@@ -321,7 +332,7 @@ object AdminApiService extends HttpRouteUtils with Directives {
                                             case true =>
                                                 val reservedCheckInDate = Utils.formattedDateToMillis(reservation("checkInDate").toString)
                                                 val reservedCheckOutDate = Utils.formattedDateToMillis(reservation("checkOutDate").toString)
-                                                if (checkInDate >= reservedCheckInDate && checkInDate < reservedCheckOutDate || checkOutDate >= reservedCheckInDate && checkOutDate < reservedCheckOutDate) {
+                                                if (checkInDate >= reservedCheckInDate && checkInDate <= reservedCheckOutDate || checkOutDate >= reservedCheckInDate && checkOutDate <= reservedCheckOutDate) {
                                                     false
                                                 } else {
                                                     true
@@ -477,7 +488,7 @@ object AdminApiService extends HttpRouteUtils with Directives {
                                     }
                                     val countOfDays = Utils.getAllPartsOfDateAsMap(Utils.formattedDateToMillis(checkOutDate), "checkOutDate")("checkOutDate.day").toLong -
                                         Utils.getAllPartsOfDateAsMap(Utils.formattedDateToMillis(checkInDate), "checkInDate")("checkInDate.day").toLong
-                                    getOkResponse(Map("totalCost" -> totalCost * countOfDays))
+                                    getOkResponse(Map("totalCost" -> totalCost * (countOfDays + 1)))
                                 } match {
                                     case Success(response) =>
                                         complete(response)

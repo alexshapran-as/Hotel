@@ -57,16 +57,16 @@ object CreateRooms {
 //        extraOptions = RoomExtraOptions(child = true, allInclusive = true)
 //      ))
 //    ).save
-    Room(
-      description = Some("Тестовый номер 4"),
-      roomClass = RoomClass.BGLW,
-      seatsNumber = 4,
-      options = RoomOptions(
-        fridge = true,
-        tv = true,
-        miniBar = true
-      ),
-      defaultCostPerNight = 4000.0
-    ).save
+//    Room(
+//      description = Some("Тестовый номер 4"),
+//      roomClass = RoomClass.BGLW,
+//      seatsNumber = 4,
+//      options = RoomOptions(
+//        fridge = true,
+//        tv = true,
+//        miniBar = true
+//      ),
+//      defaultCostPerNight = 4000.0
+//    ).save
   }
 }

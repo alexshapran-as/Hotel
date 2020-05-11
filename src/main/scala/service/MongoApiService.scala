@@ -11,17 +11,16 @@ object MongoApiService extends HttpRouteUtils with Directives {
   def getRoute(pathPrefix: String): Route =
     respondWithJsonContentType {
       post("login") {
-        formFields(
-          'username.as[String], 'password.as[String],
-          'rememberMe.?
-        ) {
-          case (userName, password, rememberMe) =>
+        extractPostRequest { case (postStr, postMsa) =>
+          val userName = postMsa.getOrElse("userName", throw new IllegalArgumentException("Username was not sent")).toString
+          val password = postMsa.getOrElse("password", throw new IllegalArgumentException("Password was not sent")).toString
+          val rememberMe = postMsa.getOrElse("rememberMe", throw new IllegalArgumentException("rememberMe was not sent")).toString.toBoolean
             MongoAuthApi.authorize(userName, password) match {
               case Some(roles) =>
                 if (MongoAuthApi.hasAccessToWithRoles(pathPrefix, roles)) {
                   setCsrfToken {
                     rememberMe match {
-                      case Some("on") =>
+                      case true =>
                         setRefreshableSession(UserSessionData(userName, roles)) {
                           complete(getOkResponse)
                         }

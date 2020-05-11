@@ -49,89 +49,81 @@ function addCsrfHeader(opts) {
     return opts;
 }
 
-function mongoAuth(mainDiv) {
-    mainDiv.append("<div id='subDiv' class='container' style='font-family: Exo2Regular,serif; min-width: 1000px'>\n" +
-        "    <div class='modal fade' id='mongoAuth' tabindex='-1' role='dialog' aria-hidden='true'>\n" +
-        "        <div class='modal-dialog modal-xlg' style='width: 1200px'>\n" +
-        "            <div class='modal-content'>\n" +
-        "                <div class='modal-header' id='mongoAuthHeader'>\n" +
-        "                </div>\n" +
-        "                <div class='modal-body'>\n" +
-        "                    <form action='/hotel_auth/login' id='mongoAuthForm' method='post' enctype='multipart/form-data' style='font-size: 16px;margin-left: 40%;margin-right: 40%;'>\n" +
-        "                        <label for='username' style='font-weight: normal'>Username :\n" +
-        "                            <input id='username' name='username' type='text' value='' class='form-control' style='width: 205px; font-size: 12px;'>\n" +
-        "                        </label>\n" +
-        "                        <br>\n" +
-        "                        <label for='password' style='font-weight: normal'>Password :\n" +
-        "                            <input id='password' name='password' type='password' value='' class='form-control' style='width: 205px; font-size: 12px;'>\n" +
-        "                        </label>\n" +
-        "                        <br>\n" +
-        "                        <label for='rememberMe' style='font-weight: normal;margin-left: 10px;'>\n" +
-        "                            <input id='rememberMe' name='rememberMe' checked='checked' type='checkbox' style='margin-right: 5px;'>remember me\n" +
-        "                        </label>\n" +
-        "                        <button id='login' type='submit' class='btn btn-success' style='cursor: pointer;margin-left: 5px;'>\n" +
-        "                            log in\n" +
-        "                        </button>\n" +
-        "                    </form>\n" +
-        "                </div>\n" +
-        "                <div class='modal-footer'>\n" +
-        "                </div>\n" +
-        "            </div>\n" +
-        "        </div>\n" +
-        "    </div>\n" +
-        "</div>");
+function auth(type, url, data, responseProcessor) {
+    // if authModalDialog not exists
+    if (!$("#authModalDialog").length) {
+        $("body").append("<div id='subDiv' class='container' style='font-family: \"Dosis\", sans; text-transform:uppercase; min-width: 1000px'>\n" +
+            "    <div class='modal fade' id='authModalDialog' tabindex='-1' role='dialog' aria-hidden='true'>\n" +
+            "        <div class='modal-dialog modal-xlg' style='width: 1200px'>\n" +
+            "            <div class='modal-content'>\n" +
+            "                <div class='modal-header' id='authModalHeader'>\n" +
+            "                    <div id='login-fail' style='background-color: #ffcccc; text-align: center; display: none'>Username or Password is incorrect</div>" +
+            "                </div>\n" +
+            "                <div class='modal-body' style='font-family: \"Dosis\", sans; text-transform:uppercase'>\n" +
+            "                    <div style='font-size: 16px; margin-left: 40%; margin-right: 40%;'>\n" +
+            "                        <label for='username' style='font-weight: normal'>Username :\n" +
+            "                            <input id='username' name='username' type='text' class='form-control' style='width: 205px; font-size: 12px;'>\n" +
+            "                        </label>\n" +
+            "                        <br>\n" +
+            "                        <label for='password' style='font-weight: normal'>Password :\n" +
+            "                            <input id='password' name='password' type='password' class='form-control' style='width: 205px; font-size: 12px;'>\n" +
+            "                        </label>\n" +
+            "                        <br>\n" +
+            "                        <label for='rememberMe' style='font-weight: normal;margin-left: 10px;'>\n" +
+            "                            <input id='rememberMe' checked='checked' type='checkbox' style='margin-right: 5px;'>remember me\n" +
+            "                        </label>\n" +
+            "                        <button id='login' type='button' class='beautyButton' style='cursor: pointer;margin-left: 5px;'>\n" +
+            "                            log in\n" +
+            "                        </button>\n" +
+            "                    </div>\n" +
+            "                </div>\n" +
+            "                <div class='modal-footer'>\n" +
+            "                </div>\n" +
+            "            </div>\n" +
+            "        </div>\n" +
+            "    </div>\n" +
+            "</div>"
+        );
 
-    function showMongoAuthModalDilog() {
-        $('#mongoAuth').modal({backdrop: 'static', keyboard: false});
-        $('#mongoAuth').modal('show');
         $('#login').on("click", function (e) {
-            $('#mongoAuthForm').submit(function (e) {
-                $.ajax(addCsrfHeader({
-                    data: new FormData($(this)[0]),
-                    type: $(this).attr('method'),
-                    url: $(this).attr('action'),
-                    async: false,
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    success: function (response) {
-                        if (response.success) {
-                            $('#mongoAuth').modal('hide');
-                            $('#subDiv').remove();
-                            window.location.reload(true);
-                        } else {
-                            $('#mongoAuthHeader').append("<div id='login-fail' style='font-family: Exo2Regular,serif; text-align:center; background-color: #ffcccc; display: block'>Username or Password is incorrect</div>")
-                            showMongoAuthModalDilog();
-                        }
-                    }
-                }));
-                e.preventDefault();
-                return false;
-            })
+            $("#login-fail").hide()
+            var jsonData = {
+                userName: $('#username').val(),
+                password: $('#password').val(),
+                rememberMe: $("#rememberMe").is(":checked")
+            };
+            $.post('/hotel_auth/login', JSON.stringify(jsonData), function (response) {
+                if (response.success) {
+                    $('#authModalDialog').modal('hide');
+                    $('#username').val('')
+                    $('#password').val('')
+                    sendRequest(type, url, data, responseProcessor);
+                } else {
+                    $("#login-fail").show()
+                }
+            });
         })
     }
-    showMongoAuthModalDilog();
+
+    $('#authModalDialog').modal({keyboard: false});
+    $('#authModalDialog').modal('show');
 }
 
-function authCheck(mainDiv) {
+function sendRequest(type, url, data = null, responseProcessor) {
+    var result;
     $.ajax(addCsrfHeader({
-        type: 'get',
-        url: '/hotel_auth/check',
+        data: data,
+        type: type,
+        url: url,
         async: false,
-        cache: false,
-        contentType: false,
-        processData: false,
         success: function(response) {
-            if (response.success) {
-                console.log("Auth success");
-            } else {
-                mongoAuth(mainDiv);
-            }
+            responseProcessor(response);
         }
     })).catch(err => {
         if (403 === err.status)
-            mongoAuth(mainDiv);
+            auth(type, url, data, responseProcessor);
         else
             alert("FAIL!\n" + err.responseText);
     });
+    return result;
 }

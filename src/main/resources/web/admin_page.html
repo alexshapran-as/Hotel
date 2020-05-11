@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <title>Hotel Admin Page</title>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.62/pdfmake.min.js" integrity="sha256-wHsYlzQ9EnjIdWOKOlQcOIw4imM+CDwRJ6NhkvJ96iY=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js" integrity="sha256-c3RzsUWg+y2XljunEQS0LqWdQ04X1D3j22fd/8JCAKw=" crossorigin="anonymous"></script>
+
     <script src="/js/jquery-3.1.1.min.js"></script>
 
     <!-- Latest compiled and minified CSS -->
@@ -23,18 +26,113 @@
 
     <style>
         @font-face {
-            font-family: "Exo2Regular";
-            src: url("/css/Exo2Regular.eot");
-            src: url("/css/Exo2Regular.eot?#iefix") format("embedded-opentype"),
-            url("/css/Exo2Regular.woff") format("woff"),
-            url("/css/Exo2Regular.ttf") format("truetype");
+            font-family: 'Dosis', sans;
             font-style: normal;
             font-weight: normal;
+        }
+
+        body {
+            background-image: url(/images/backgroung.jpg);
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-attachment: fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+
+        .modal-body {
+            overflow: scroll;
+            width: 100%;
+            height: 100%;
+            padding: 10px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .beautyButton {
+            background: white;
+            display:block;
+            border:1px solid black;
+            font-family: 'Dosis', sans;
+            font-weight: normal;
+            color: black;
+            text-transform:uppercase;
+            text-decoration:none;
+            text-align:center;
+            opacity:.8;
+            letter-spacing: 1px;
+            -webkit-transition: all 300ms cubic-bezier(0.250, 0.250, 0.750, 0.750);
+            -moz-transition: all 300ms cubic-bezier(0.250, 0.250, 0.750, 0.750);
+            -o-transition: all 300ms cubic-bezier(0.250, 0.250, 0.750, 0.750);
+            transition: all 300ms cubic-bezier(0.250, 0.250, 0.750, 0.750); /* linear */
+        }
+
+        .beautyButton:hover {
+            background: black;
+            border:1px solid white;
+            color: white;
+            opacity:1;
+            letter-spacing: 4px;
+            -webkit-transition: all 300ms cubic-bezier(0.250, 0.250, 0.750, 0.750);
+            -moz-transition: all 300ms cubic-bezier(0.250, 0.250, 0.750, 0.750);
+            -o-transition: all 300ms cubic-bezier(0.250, 0.250, 0.750, 0.750);
+            transition: all 300ms cubic-bezier(0.250, 0.250, 0.750, 0.750); /* linear */
+        }
+
+        .deleteEmployee {
+            background: white;
+            display:block;
+            border:1px solid black;
+            font-family: 'Dosis', sans;
+            font-weight: normal;
+            color: black;
+            text-transform:uppercase;
+            text-decoration:none;
+            text-align:center;
+        }
+
+        .deleteEmployee:hover {
+            background: black;
+            border:1px solid white;
+            color: white;
+        }
+
+        .openReserveDialog {
+            background: white;
+            display:block;
+            border:1px solid black;
+            font-family: 'Dosis', sans;
+            font-weight: normal;
+            color: black;
+            text-transform:uppercase;
+            text-decoration:none;
+            text-align:center;
+        }
+
+        .openReserveDialog:hover {
+            background: black;
+            border:1px solid white;
+            color: white;
+        }
+
+        .form-control {
+            background: white;
+            display:block;
+            border:1px solid black;
+            font-family: 'Dosis', sans;
+            font-weight: normal;
+            color: black;
+            text-decoration:none;
         }
     </style>
 </head>
 <body>
-<div id="mainDiv" class="container" style="font-family: Exo2Regular,serif; min-width: 1000px">
+<div id="mainDiv" class="container" style="font-family: 'Dosis', sans; text-transform:uppercase; min-width: 1000px">
     <div class='modal fade' id='employeesModalWindow' tabindex='-1' role='dialog' aria-hidden='true'>
         <div class='modal-dialog modal-xlg' style='width: 1200px'>
             <div class='modal-content'>
@@ -61,7 +159,7 @@
                     </table>
                 </div>
                 <div class='modal-footer'>
-                    <button id='addEmployee' type='submit' class='btn btn-success'
+                    <button id='addEmployee' type='submit' class='beautyButton'
                             style='cursor: pointer;margin-left: 5px;'>Добавить сотрудника
                     </button>
                 </div>
@@ -77,8 +175,8 @@
                 <div class='modal-body'>
                     <form id="addEmployeeForm" action="/hotel/admin/add_employee" method="post"
                           enctype="multipart/form-data" style="font-size: 16px;">
-                        <label for="username" style="font-weight: normal">Username :
-                            <input id="username" name="username" type="text" value="" class="form-control"
+                        <label for="userName" style="font-weight: normal">Username :
+                            <input id="userName" name="userName" type="text" value="" class="form-control"
                                    style="width: 1100px; font-size: 12px;">
                         </label>
                         <br>
@@ -127,12 +225,12 @@
                                    style="width: 1100px; font-size: 12px;">
                         </label>
                         <br>
-                        <button id='addEmployeeInModal' type="submit" class="btn btn-success"
-                                style='cursor: pointer;margin-left: 5px;'>Добавить
-                        </button>
                     </form>
                 </div>
                 <div class='modal-footer'>
+                    <button id='addEmployeeInModal' type="submit" class="beautyButton"
+                            style='cursor: pointer;margin-left: 5px;'>Добавить
+                    </button>
                 </div>
             </div>
         </div>
@@ -154,9 +252,7 @@
                                 <input id="findFreeRoomsEndDate" name="endDate" type="date" value="2017-01-01"
                                        class="form-control" style="width: 285px; font-size: 14px;">
                             </label>
-                            <button id='findFreeRoomsByDate' type="submit" class="btn btn-success"
-                                    style='cursor: pointer;margin-left: 5px;'>Найти
-                            </button>
+                            <button id='findFreeRoomsByDate' type="submit" class="beautyButton" style='cursor: pointer;margin-left: 5px;'>Найти</button>
                         </label>
                     <hr>
                     <table class="table" id="roomsTable">
@@ -340,7 +436,7 @@
                             <input id="groupId" name="groupId" type="text" value="" placeholder="Введите ID группы или получите новый" class="form-control"
                                    style="width: 1100px; font-size: 12px;">
                         </label>
-                        <button id='getGroupId' type="submit" class="btn btn-success"
+                        <button id='getGroupId' type="submit" class="beautyButton"
                                 style='cursor: pointer;margin-left: 5px;'>Получить ID новой группы
                         </button>
                         <label for="groupCountOfClients" style="font-weight: normal">Общее число человек :
@@ -353,34 +449,31 @@
                         </label>
                         <hr>
                         <div id="getRoomTotalCostDiv">
-                            <button id='getRoomTotalCost' type="submit" class="btn btn-success"
+                            <button id='getRoomTotalCost' type="submit" class="beautyButton"
                                     style='cursor: pointer;margin-left: 5px;'>Рассчитать стоимость
                             </button>
                         </div>
                     </div>
                 </div>
                 <div class='modal-footer'>
-                    <button id='payForReserveRoom' type="submit" class="btn btn-success"
-                            style='cursor: pointer;margin-left: 5px;'>Оплатить
-                    </button>
-                    <button id='reserveRoom' type="submit" class="btn btn-success"
+                    <button id='reserveRoom' type="submit" class="beautyButton"
                             style='cursor: pointer;margin-left: 5px;'>Забронировать
                     </button>
                 </div>
             </div>
         </div>
     </div>
-    <button id='reservations' type='submit' class='btn btn-success' style='cursor: pointer;margin-left: 5px;'>Брони</button>
+    <button id='reservations' type='submit' class='beautyButton' style='cursor: pointer;margin-left: 5px;'>Брони</button>
     <br>
-    <button id='busyRooms' type='submit' class='btn btn-success' style='cursor: pointer;margin-left: 5px;'>Занятые сейчас номера</button>
+    <button id='busyRooms' type='submit' class='beautyButton' style='cursor: pointer;margin-left: 5px;'>Занятые сейчас номера</button>
     <br>
-    <button id='freeRooms' type='submit' class='btn btn-success' style='cursor: pointer;margin-left: 5px;'>Свободные сейчас номера</button>
+    <button id='freeRooms' type='submit' class='beautyButton' style='cursor: pointer;margin-left: 5px;'>Свободные сейчас номера</button>
     <br>
-    <button id='accommodationInfo' type='submit' class='btn btn-success' style='cursor: pointer;margin-left: 5px;'>Информация о проживании</button>
+    <button id='accommodationInfo' type='submit' class='beautyButton' style='cursor: pointer;margin-left: 5px;'>Информация о проживании</button>
     <br>
-    <button id='rooms' type='submit' class='btn btn-success' style='cursor: pointer;margin-left: 5px;'>Номера</button>
+    <button id='rooms' type='submit' class='beautyButton' style='cursor: pointer;margin-left: 5px;'>Номера</button>
     <br>
-    <button id='employees' type='submit' class='btn btn-success' style='cursor: pointer;margin-left: 5px;'>Сотрудники
+    <button id='employees' type='submit' class='beautyButton' style='cursor: pointer;margin-left: 5px;'>Сотрудники
     </button>
 </div>
 </body>
@@ -394,227 +487,216 @@
 
     $(function () {
 
-        authCheck($("#mainDiv"));
+        sendRequest('post', '/hotel_auth/check', null, function (response) {
+           if (response.success) {
+               console.log("Auth success");
+           } else {
+               console.log("Auth failed");
+           }
+        });
 
         function getEmployeesList() {
-            $.ajax(addCsrfHeader({
-                type: 'post',
-                url: '/hotel/admin/employees_list',
-                async: false,
-                cache: false,
-                contentType: false,
-                processData: false,
-                success: function (response) {
-                    if (response.success) {
-                        response.result.map(employee => {
-                            var tr = $('<tr>');
-                            tr.append('<td>' + employee.username + '</td>');
-                            tr.append('<td>' + employee.lastName + '</td>');
-                            tr.append('<td>' + employee.firstName + '</td>');
-                            tr.append('<td>' + employee.surName + '</td>');
-                            tr.append('<td>' + employee.birthDate + '</td>');
-                            tr.append('<td>' + employee.seriesNumberPassport + '</td>');
-                            tr.append('<td>' + employee.address + '</td>');
-                            tr.append('<td>' + employee.salary + '</td>');
-                            tr.append("<td><button class='deleteEmployee' employeeUserName='" + employee.username + "' style='cursor: pointer;margin-left: 5px;'>Удалить</button></td>");
-                            $('#tableForEmployeesBody').append(tr);
+            sendRequest('post', '/hotel/admin/employees_list', null, function (response) {
+                if (response.success) {
+                    response.result.map(employee => {
+                        var tr = $('<tr>');
+                        tr.append('<td>' + employee.username + '</td>');
+                        tr.append('<td>' + employee.lastName + '</td>');
+                        tr.append('<td>' + employee.firstName + '</td>');
+                        tr.append('<td>' + employee.surName + '</td>');
+                        tr.append('<td>' + employee.birthDate + '</td>');
+                        tr.append('<td>' + employee.seriesNumberPassport + '</td>');
+                        tr.append('<td>' + employee.address + '</td>');
+                        tr.append('<td>' + employee.salary + '</td>');
+                        tr.append("<td><button class='deleteEmployee' employeeUserName='" + employee.username + "' style='cursor: pointer;margin-left: 5px;'>Удалить</button></td>");
+                        $('#tableForEmployeesBody').append(tr);
+                    });
+                    $(".deleteEmployee").on("click",function () {
+                        sendRequest('post', '/hotel/admin/delete_employee', JSON.stringify({ "userName": $(this).attr("employeeUserName")}), function (response) {
+                            if (response.success) {
+                                $('#tableForEmployeesBody').remove();
+                                $('#tableForEmployees').append("<tbody id='tableForEmployeesBody' />");
+                                getEmployeesList();
+                            } else {
+                                alert("Error deleting");
+                            }
                         });
-                    } else {
-                        alert("Nothing found");
-                    }
+                    });
+                } else {
+                    alert("Nothing found");
                 }
-            }));
+            });
         }
 
         $("#addEmployeeInModal").on("click", function () {
             $('#addEmployeeForm').submit(function (e) {
-                $.ajax(addCsrfHeader({
-                    data: new FormData($(this)[0]),
-                    type: $(this).attr('method'),
-                    url: $(this).attr('action'),
-                    async: true,
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    success: function (response) {
-                        if (response.success) {
-                            $('#tableForEmployeesBody').remove();
-                            $('#tableForEmployees').append("<tbody id='tableForEmployeesBody' />");
-                            getEmployeesList();
-                        } else {
-                            alert("FAIL!\n" + response.error.description)
-                        }
+                var object = {};
+                (new FormData($(this)[0])).forEach(function(value, key){
+                    object[key] = value;
+                });
+                var json = JSON.stringify(object);
+                sendRequest($(this).attr('method'), $(this).attr('action'), json, function (response) {
+                    if (response.success) {
+                        $('#tableForEmployeesBody').remove();
+                        $('#tableForEmployees').append("<tbody id='tableForEmployeesBody' />");
+                        getEmployeesList();
+                    } else {
+                        alert("FAIL!\n" + response.error.description)
                     }
-                }));
+                });
                 e.preventDefault();
                 return false;
             })
         });
 
         function getReservationsList() {
-            $.ajax(addCsrfHeader({
-                type: 'post',
-                url: '/hotel/admin/reservations_list',
-                async: false,
-                cache: false,
-                contentType: false,
-                processData: false,
-                success: function (response) {
-                    if (response.success) {
-                        $('#reservationsTableBody').html("");
-                        response.result.map(reservedRoom => {
-                            var fridge, miniBar, tv, gardenView, mountainView, seaView;
-                            if (reservedRoom.options.fridge) {
-                                fridge = "Да"
-                            } else {
-                                fridge = "Нет"
-                            }
-                            if (reservedRoom.options.miniBar) {
-                                miniBar = "Да"
-                            } else {
-                                miniBar = "Нет"
-                            }
-                            if (reservedRoom.options.tv) {
-                                tv = "Да"
-                            } else {
-                                tv = "Нет"
-                            }
-                            if (reservedRoom.options.gardenView) {
-                                gardenView = "Да"
-                            } else {
-                                gardenView = "Нет"
-                            }
-                            if (reservedRoom.options.mountainView) {
-                                mountainView = "Да"
-                            } else {
-                                mountainView = "Нет"
-                            }
-                            if (reservedRoom.options.fridge) {
-                                seaView = "Да"
-                            } else {
-                                seaView = "Нет"
-                            }
-                            var tr = $('<tr>');
-                            tr.append('<td>' + reservedRoom.description + '</td>');
-                            tr.append('<td>' + reservedRoom.class + '</td>');
-                            tr.append('<td>' + reservedRoom.seatsNumber + '</td>');
-                            tr.append('<td>' + fridge + '</td>');
-                            tr.append('<td>' + miniBar + '</td>');
-                            tr.append('<td>' + tv + '</td>');
-                            tr.append('<td>' + gardenView + '</td>');
-                            tr.append('<td>' + mountainView + '</td>');
-                            tr.append('<td>' + seaView + '</td>');
-                            tr.append('<td>' + reservedRoom.totalCost + '</td>');
-                            tr.append('<td>' + reservedRoom.fio + '</td>');
-                            tr.append(
-                                '<td>' +
-                                '<table class="table">' +
-                                '    <thead>\n' +
-                                '    <tr>\n' +
-                                '        <th>Дата заселения</th>\n' +
-                                '        <th>Дата выселения</th>\n' +
-                                '    </tr>\n' +
-                                '    </thead>\n' +
-                                '    <tbody>\n' +
-                                '    <tr>\n' +
-                                '       <td>' + reservedRoom.checkInDate + '</td>\n' +
-                                '       <td>' + reservedRoom.checkOutDate + '</td>\n' +
-                                '    </tr>\n' +
-                                '    </tbody>\n' +
-                                '</table>' +
-                                '</td>');
-                            $('#reservationsTableBody').append(tr);
-                        });
-                    } else {
-                        alert("Nothing found");
-                    }
+            sendRequest('post', '/hotel/admin/reservations_list', null, function (response) {
+                if (response.success) {
+                    $('#reservationsTableBody').html("");
+                    response.result.map(reservedRoom => {
+                        var fridge, miniBar, tv, gardenView, mountainView, seaView;
+                        if (reservedRoom.options.fridge) {
+                            fridge = "Да"
+                        } else {
+                            fridge = "Нет"
+                        }
+                        if (reservedRoom.options.miniBar) {
+                            miniBar = "Да"
+                        } else {
+                            miniBar = "Нет"
+                        }
+                        if (reservedRoom.options.tv) {
+                            tv = "Да"
+                        } else {
+                            tv = "Нет"
+                        }
+                        if (reservedRoom.options.gardenView) {
+                            gardenView = "Да"
+                        } else {
+                            gardenView = "Нет"
+                        }
+                        if (reservedRoom.options.mountainView) {
+                            mountainView = "Да"
+                        } else {
+                            mountainView = "Нет"
+                        }
+                        if (reservedRoom.options.fridge) {
+                            seaView = "Да"
+                        } else {
+                            seaView = "Нет"
+                        }
+                        var tr = $('<tr>');
+                        tr.append('<td>' + reservedRoom.description + '</td>');
+                        tr.append('<td>' + reservedRoom.class + '</td>');
+                        tr.append('<td>' + reservedRoom.seatsNumber + '</td>');
+                        tr.append('<td>' + fridge + '</td>');
+                        tr.append('<td>' + miniBar + '</td>');
+                        tr.append('<td>' + tv + '</td>');
+                        tr.append('<td>' + gardenView + '</td>');
+                        tr.append('<td>' + mountainView + '</td>');
+                        tr.append('<td>' + seaView + '</td>');
+                        tr.append('<td>' + reservedRoom.totalCost + '</td>');
+                        tr.append('<td>' + reservedRoom.fio + '</td>');
+                        tr.append(
+                            '<td>' +
+                            '<table class="table">' +
+                            '    <thead>\n' +
+                            '    <tr>\n' +
+                            '        <th>Дата заселения</th>\n' +
+                            '        <th>Дата выселения</th>\n' +
+                            '    </tr>\n' +
+                            '    </thead>\n' +
+                            '    <tbody>\n' +
+                            '    <tr>\n' +
+                            '       <td>' + reservedRoom.checkInDate + '</td>\n' +
+                            '       <td>' + reservedRoom.checkOutDate + '</td>\n' +
+                            '    </tr>\n' +
+                            '    </tbody>\n' +
+                            '</table>' +
+                            '</td>');
+                        $('#reservationsTableBody').append(tr);
+                    });
+                } else {
+                    alert("Nothing found");
                 }
-            }));
+            });
         };
 
         function getAccommodationInfoList() {
-            $.ajax(addCsrfHeader({
-                type: 'post',
-                url: '/hotel/admin/accommodation_info_list',
-                async: false,
-                cache: false,
-                contentType: false,
-                processData: false,
-                success: function (response) {
-                    if (response.success) {
-                        $('#accommodationInfoTableBody').html("");
-                        response.result.map(reservedRoom => {
-                            var fridge, miniBar, tv, gardenView, mountainView, seaView;
-                            if (reservedRoom.options.fridge) {
-                                fridge = "Да"
-                            } else {
-                                fridge = "Нет"
-                            }
-                            if (reservedRoom.options.miniBar) {
-                                miniBar = "Да"
-                            } else {
-                                miniBar = "Нет"
-                            }
-                            if (reservedRoom.options.tv) {
-                                tv = "Да"
-                            } else {
-                                tv = "Нет"
-                            }
-                            if (reservedRoom.options.gardenView) {
-                                gardenView = "Да"
-                            } else {
-                                gardenView = "Нет"
-                            }
-                            if (reservedRoom.options.mountainView) {
-                                mountainView = "Да"
-                            } else {
-                                mountainView = "Нет"
-                            }
-                            if (reservedRoom.options.fridge) {
-                                seaView = "Да"
-                            } else {
-                                seaView = "Нет"
-                            }
-                            var tr = $('<tr>');
-                            tr.append('<td>' + reservedRoom.description + '</td>');
-                            tr.append('<td>' + reservedRoom.class + '</td>');
-                            tr.append('<td>' + reservedRoom.seatsNumber + '</td>');
-                            tr.append('<td>' + fridge + '</td>');
-                            tr.append('<td>' + miniBar + '</td>');
-                            tr.append('<td>' + tv + '</td>');
-                            tr.append('<td>' + gardenView + '</td>');
-                            tr.append('<td>' + mountainView + '</td>');
-                            tr.append('<td>' + seaView + '</td>');
-                            tr.append('<td>' + reservedRoom.extraOptions + '</td>');
-                            tr.append('<td>' + reservedRoom.totalCost + '</td>');
-                            tr.append('<td>' + reservedRoom.fio + '</td>');
-                            tr.append('<td>' + reservedRoom.seriesNumberPassport + '</td>');
-                            tr.append('<td>' + reservedRoom.birthDate + '</td>');
-                            tr.append('<td>' + reservedRoom.address + '</td>');
-                            tr.append(
-                                '<td>' +
-                                '<table class="table">' +
-                                '    <thead>\n' +
-                                '    <tr>\n' +
-                                '        <th>Дата заселения</th>\n' +
-                                '        <th>Дата выселения</th>\n' +
-                                '    </tr>\n' +
-                                '    </thead>\n' +
-                                '    <tbody>\n' +
-                                '    <tr>\n' +
-                                '       <td>' + reservedRoom.checkInDate + '</td>\n' +
-                                '       <td>' + reservedRoom.checkOutDate + '</td>\n' +
-                                '    </tr>\n' +
-                                '    </tbody>\n' +
-                                '</table>' +
-                                '</td>');
-                            $('#accommodationInfoTableBody').append(tr);
-                        });
-                    } else {
-                        alert("Nothing found");
-                    }
+            sendRequest('post', '/hotel/admin/accommodation_info_list', null, function (response) {
+                if (response.success) {
+                    $('#accommodationInfoTableBody').html("");
+                    response.result.map(reservedRoom => {
+                        var fridge, miniBar, tv, gardenView, mountainView, seaView;
+                        if (reservedRoom.options.fridge) {
+                            fridge = "Да"
+                        } else {
+                            fridge = "Нет"
+                        }
+                        if (reservedRoom.options.miniBar) {
+                            miniBar = "Да"
+                        } else {
+                            miniBar = "Нет"
+                        }
+                        if (reservedRoom.options.tv) {
+                            tv = "Да"
+                        } else {
+                            tv = "Нет"
+                        }
+                        if (reservedRoom.options.gardenView) {
+                            gardenView = "Да"
+                        } else {
+                            gardenView = "Нет"
+                        }
+                        if (reservedRoom.options.mountainView) {
+                            mountainView = "Да"
+                        } else {
+                            mountainView = "Нет"
+                        }
+                        if (reservedRoom.options.fridge) {
+                            seaView = "Да"
+                        } else {
+                            seaView = "Нет"
+                        }
+                        var tr = $('<tr>');
+                        tr.append('<td>' + reservedRoom.description + '</td>');
+                        tr.append('<td>' + reservedRoom.class + '</td>');
+                        tr.append('<td>' + reservedRoom.seatsNumber + '</td>');
+                        tr.append('<td>' + fridge + '</td>');
+                        tr.append('<td>' + miniBar + '</td>');
+                        tr.append('<td>' + tv + '</td>');
+                        tr.append('<td>' + gardenView + '</td>');
+                        tr.append('<td>' + mountainView + '</td>');
+                        tr.append('<td>' + seaView + '</td>');
+                        tr.append('<td>' + reservedRoom.extraOptions + '</td>');
+                        tr.append('<td>' + reservedRoom.totalCost + '</td>');
+                        tr.append('<td>' + reservedRoom.fio + '</td>');
+                        tr.append('<td>' + reservedRoom.seriesNumberPassport + '</td>');
+                        tr.append('<td>' + reservedRoom.birthDate + '</td>');
+                        tr.append('<td>' + reservedRoom.address + '</td>');
+                        tr.append(
+                            '<td>' +
+                            '<table class="table">' +
+                            '    <thead>\n' +
+                            '    <tr>\n' +
+                            '        <th>Дата заселения</th>\n' +
+                            '        <th>Дата выселения</th>\n' +
+                            '    </tr>\n' +
+                            '    </thead>\n' +
+                            '    <tbody>\n' +
+                            '    <tr>\n' +
+                            '       <td>' + reservedRoom.checkInDate + '</td>\n' +
+                            '       <td>' + reservedRoom.checkOutDate + '</td>\n' +
+                            '    </tr>\n' +
+                            '    </tbody>\n' +
+                            '</table>' +
+                            '</td>');
+                        $('#accommodationInfoTableBody').append(tr);
+                    });
+                } else {
+                    alert("Nothing found");
                 }
-            }));
+            });
         };
 
         var rooms = {};
@@ -670,7 +752,6 @@
             });
             $(".openReserveDialog").on('click', function () {
                 $('#reserveRoomModalWindow').modal('show');
-                $("#reserveRoom").diab
                 var clientDiv = $('#reserveClientDiv');
                 clientDiv.html("");
                 var roomId = $(this).attr("roomId");
@@ -688,7 +769,7 @@
                             var invalidStartAndEndDates = invalidDate.split(":");
                             var invalidStartDate = moment(invalidStartAndEndDates[0]);
                             var invalidEndDate = moment(invalidStartAndEndDates[1]);
-                            if (date >= invalidStartDate && date < invalidEndDate) {
+                            if (date >= invalidStartDate && date <= invalidEndDate) {
                                 res = true;
                                 return false;
                             } else {
@@ -802,101 +883,60 @@
         };
 
         function getRoomsList() {
-            $.ajax(addCsrfHeader({
-                type: 'post',
-                url: '/hotel/admin/rooms_list',
-                async: false,
-                cache: false,
-                contentType: false,
-                processData: false,
-                success: function (response) {
-                    if (response.success) {
-                        $('#roomsTableBody').html("");
-                        fillRooms(response, $('#roomsTableBody'));
-                    } else {
-                        alert("Nothing found");
-                    }
+            sendRequest('post', '/hotel/admin/rooms_list', null, function (response) {
+                if (response.success) {
+                    $('#roomsTableBody').html("");
+                    fillRooms(response, $('#roomsTableBody'));
+                } else {
+                    alert("Nothing found");
                 }
-            }));
+            });
         };
 
         function getBusyRoomsList() {
-            $.ajax(addCsrfHeader({
-                type: 'post',
-                url: '/hotel/admin/busy_rooms_list',
-                async: false,
-                cache: false,
-                contentType: false,
-                processData: false,
-                success: function (response) {
-                    if (response.success) {
-                        $('#busyRoomsTableBody').html("");
-                        fillRooms(response, $('#busyRoomsTableBody'));
-                    } else {
-                        alert("Nothing found");
-                    }
+            sendRequest('post', '/hotel/admin/busy_rooms_list', null, function (response) {
+                if (response.success) {
+                    $('#busyRoomsTableBody').html("");
+                    fillRooms(response, $('#busyRoomsTableBody'));
+                } else {
+                    alert("Nothing found");
                 }
-            }));
+            });
         }
 
         function getFreeRoomsList() {
-            $.ajax(addCsrfHeader({
-                type: 'post',
-                url: '/hotel/admin/free_rooms_list',
-                async: false,
-                cache: false,
-                contentType: false,
-                processData: false,
-                success: function (response) {
-                    if (response.success) {
-                        $('#freeRoomsTableBody').html("");
-                        fillRooms(response, $('#freeRoomsTableBody'));
-                    } else {
-                        alert("Nothing found");
-                    }
+            sendRequest('post', '/hotel/admin/free_rooms_list', null, function (response) {
+                if (response.success) {
+                    $('#freeRoomsTableBody').html("");
+                    fillRooms(response, $('#freeRoomsTableBody'));
+                } else {
+                    alert("Nothing found");
                 }
-            }));
+            });
         };
 
         function getFilteredByDateRoomList() {
-            $.ajax(addCsrfHeader({
-                data: JSON.stringify({
-                    "checkInDate": document.getElementById("findFreeRoomsStartDate").value,
-                    "checkOutDate": document.getElementById("findFreeRoomsEndDate").value
-                }),
-                type: 'post',
-                url: '/hotel/admin/filtered_rooms_list',
-                async: false,
-                cache: false,
-                contentType: false,
-                processData: false,
-                success: function (response) {
-                    if (response.success) {
-                        $('#roomsTableBody').html("");
-                        fillRooms(response, $('#roomsTableBody'));
-                    } else {
-                        alert("Nothing found");
-                    }
+            sendRequest('post', '/hotel/admin/filtered_rooms_list', JSON.stringify({
+                "checkInDate": document.getElementById("findFreeRoomsStartDate").value,
+                "checkOutDate": document.getElementById("findFreeRoomsEndDate").value
+            }), function (response) {
+                if (response.success) {
+                    $('#roomsTableBody').html("");
+                    fillRooms(response, $('#roomsTableBody'));
+                } else {
+                    alert("Nothing found");
                 }
-            }));
+            });
         };
 
         function getGroupId() {
-            $.ajax(addCsrfHeader({
-                type: 'post',
-                url: '/hotel/admin/new_group_id',
-                async: false,
-                cache: false,
-                contentType: false,
-                processData: false,
-                success: function (response) {
-                    if (response.success) {
-                        $("#groupId").val(response.result.groupId);
-                    } else {
-                        alert("FAIL!")
-                    }
+            sendRequest('post', '/hotel/admin/new_group_id', null, function (response) {
+                if (response.success) {
+                    $("#groupId").val(response.result.groupId);
+                } else {
+                    alert("FAIL!")
                 }
-            }))
+            });
         };
 
         function getRoomTotalCost() {
@@ -933,27 +973,209 @@
                 }
                 jsonDataForReservation.reservations.push(reservation);
             }
-            $.ajax(addCsrfHeader({
-                data: JSON.stringify(jsonDataForReservation),
-                type: 'post',
-                url: '/hotel/admin/calculate_room_cost',
-                async: false,
-                cache: false,
-                contentType: false,
-                processData: false,
-                success: function (response) {
-                    if (response.success) {
-                        if (document.getElementById("totalCost") != null) {
-                            document.getElementById("totalCost").remove();
-                        }
-                        var pTotalCost = $('<p id="totalCost">');
-                        pTotalCost.append('Полная стоимость проживания на даты ' + $('#reserveRoomDate').val() + ' составит: ' + response.result.totalCost + '₽');
-                        $("#getRoomTotalCostDiv").append(pTotalCost);
-                    } else {
-                        alert("Ошибка!\n" + response.error.description);
+            sendRequest('post', '/hotel/admin/calculate_room_cost', JSON.stringify(jsonDataForReservation), function (response) {
+                if (response.success) {
+                    if (document.getElementById("totalCost") != null) {
+                        document.getElementById("totalCost").remove();
                     }
+                    var pTotalCost = $('<p id="totalCost">');
+                    pTotalCost.append('Полная стоимость проживания на даты ' + $('#reserveRoomDate').val() + ' составит: ' + response.result.totalCost + '₽');
+                    $("#getRoomTotalCostDiv").append(pTotalCost);
+                } else {
+                    alert("Ошибка!\n" + response.error.description);
                 }
-            }));
+            });
+        };
+
+        function getBill() {
+            var fridge, miniBar, tv, gardenView, mountainView, seaView;
+            var bedBreakfast = "";
+            var allInclusive = "";
+            var extraBedStr = "";
+            var fios = "";
+            if (currentRoom.options.fridge) {
+                fridge = "Да"
+            } else {
+                fridge = "Нет"
+            }
+            if (currentRoom.options.miniBar) {
+                miniBar = "Да"
+            } else {
+                miniBar = "Нет"
+            }
+            if (currentRoom.options.tv) {
+                tv = "Да"
+            } else {
+                tv = "Нет"
+            }
+            if (currentRoom.options.gardenView) {
+                gardenView = "Да"
+            } else {
+                gardenView = "Нет"
+            }
+            if (currentRoom.options.mountainView) {
+                mountainView = "Да"
+            } else {
+                mountainView = "Нет"
+            }
+            if (currentRoom.options.fridge) {
+                seaView = "Да"
+            } else {
+                seaView = "Нет"
+            }
+
+            var date = $('#reserveRoomDate').val().split(" - ");
+
+            var jsonDataForReservation = {
+                "roomId": currentRoom._id,
+                "groupId": $("#groupId").val(),
+                "groupCountOfClients": $("#groupCountOfClients").val(),
+                "groupDescription": $("#groupDescription").val(),
+                "checkInDate": date[0],
+                "checkOutDate": date[1],
+                "reservations": []
+            };
+
+            var seatsNumber = currentRoom.seatsNumber
+
+            var i;
+            var j = 0;
+            if ($('#extraBed').is(':checked')) {
+                seatsNumber = seatsNumber + 1;
+            }
+            for (i = 0; i < seatsNumber; i++) {
+                var extraBed = false;
+                if ($('#extraBed').is(':checked') && i === seatsNumber - 1) {
+                    extraBed = true;
+                }
+                var reservation = {
+                    "lastName": document.getElementById("clientLastName" + i).value,
+                    "firstName": document.getElementById("clientFirstName" + i).value,
+                    "surName": document.getElementById("clientSurName" + i).value,
+                    "birthDate": document.getElementById("clientBirthDate" + i).value,
+                    "seriesNumberPassport": document.getElementById("clientSeriesNumberPassport" + i).value,
+                    "address": document.getElementById("clientAddress" + i).value,
+                    "bedBreakfast": $('#bedBreakfast').is(':checked'),
+                    "allInclusive": $('#allInclusive').is(':checked'),
+                    "extraBed": extraBed
+                }
+                jsonDataForReservation.reservations.push(reservation);
+
+                if (extraBed) {
+                    extraBedStr += " Да"
+                } else {
+                    extraBedStr += " Нет"
+                }
+                if ($('#bedBreakfast').is(':checked')) {
+                    bedBreakfast += " Да"
+                } else {
+                    bedBreakfast += " Нет"
+                }
+                if ($('#allInclusive').is(':checked')) {
+                    allInclusive += " Да"
+                } else {
+                    allInclusive += " Нет"
+                }
+                if (j === 0) {
+                    fios = fios + reservation.lastName + " " + reservation.firstName + " " + reservation.surName;
+                } else {
+                    fios = fios + ", " + reservation.lastName + " " + reservation.firstName + " " + reservation.surName;
+                }
+                j += 1;
+            }
+            function getTotalCost() {
+                return
+            }
+
+            var totalCost;
+            sendRequest('post', '/hotel/admin/calculate_room_cost', JSON.stringify(jsonDataForReservation), function (response) {
+                if (response.success) {
+                    totalCost = response.result.totalCost;
+                } else {
+                    alert("Ошибка!\n" + response.error.description);
+                }
+            });
+
+            var sTable = $('<table class="table">');
+            sTable.append('<tr>\n' +
+                '                            <th>Описание</th>\n' +
+                '                            <th>Класс номера</th>\n' +
+                '                            <th>Количество мест</th>\n' +
+                '                            <th>Холодильник</th>\n' +
+                '                            <th>Минибар</th>\n' +
+                '                            <th>Телевизор</th>\n' +
+                '                            <th>Вид на сад</th>\n' +
+                '                            <th>Вид на горы</th>\n' +
+                '                            <th>Вид на море</th>\n' +
+                '                            <th>Дополнительные опции</th>\n' +
+                '                            <th>Общая стоимость пребывания ₽</th>\n' +
+                '                            <th>ФИО</th>\n' +
+                '                            <th>Даты пребывания</th>\n' +
+                '                        </tr>');
+            var tr = $('<tr>');
+            tr.append('<td>' + currentRoom.description + '</td>');
+            tr.append('<td>' + currentRoom.class + '</td>');
+            tr.append('<td>' + currentRoom.seatsNumber + '</td>');
+            tr.append('<td>' + fridge + '</td>');
+            tr.append('<td>' + miniBar + '</td>');
+            tr.append('<td>' + tv + '</td>');
+            tr.append('<td>' + gardenView + '</td>');
+            tr.append('<td>' + mountainView + '</td>');
+            tr.append('<td>' + seaView + '</td>');
+            tr.append(
+                '<td>' +
+                '<table>' +
+                '<tr>' +
+                '<th>Завтрак</th>' +
+                '<th>Все включено</th>' +
+                '<th>Доп. кровать</th>' +
+                '</tr>' +
+                '<tr>' +
+                '<td>' + bedBreakfast + '</td>' +
+                '<td>' + allInclusive + '</td>' +
+                '<td>' + extraBedStr + '</td>' +
+                '</tr>' +
+                '</table>' +
+                '</td>'
+            );
+            tr.append('<td>' + totalCost + '</td>');
+            tr.append('<td>' + fios + '</td>');
+            tr.append(
+                '<td>' +
+                '<table>' +
+                '<tr>' +
+                '<th>Дата заселения</th>\n' +
+                '<th>Дата выселения</th>\n' +
+                '</tr>' +
+                '<tr>' +
+                '<td>' + date[0] + '</td>' +
+                '<td>' + date[1] + '</td>' +
+                '</tr>' +
+                '</table>' +
+                '</td>'
+            );
+            sTable.append(tr);
+
+            var style = "<style>";
+            style = style + "table {width: 100%;font: 17px Calibri;}";
+            style = style + "table, th, td {border: solid 1px #DDD; border-collapse: collapse;";
+            style = style + "padding: 2px 3px;text-align: center;}";
+            style = style + "</style>";
+
+            // CREATE A WINDOW OBJECT.
+            var win = window.open('', '', 'height=700,width=700');
+
+            win.document.write('<html><head>');
+            win.document.write('<title>Bill</title>');   // <title> FOR PDF HEADER.
+            win.document.write(style);          // ADD STYLE INSIDE THE HEAD TAG.
+            win.document.write('</head>');
+            win.document.write('<body><h1>Счет</h1>');
+            win.document.write(sTable[0].outerHTML);         // THE TABLE CONTENTS INSIDE THE BODY TAG.
+            win.document.write('</body></html>');
+
+            win.document.close(); 	// CLOSE THE CURRENT WINDOW.
+
+            win.print();    // PRINT THE CONTENTS.
         };
 
         function reserveRoom() {
@@ -997,27 +1219,19 @@
                 }
                 jsonDataForReservation.reservations.push(reservation);
             }
-            $.ajax(addCsrfHeader({
-                data: JSON.stringify(jsonDataForReservation),
-                type: 'post',
-                url: '/hotel/admin/reserve_room',
-                async: false,
-                cache: false,
-                contentType: false,
-                processData: false,
-                success: function (response) {
-                    if (response.success) {
-                        alert("Номер успешно забранирован!");
-                        rooms = {};
-                        currentRoom = null;
-                        $('#roomsTableBody').remove();
-                        $('#roomsTable').append("<tbody id='roomsTableBody' />");
-                        getRoomsList();
-                    } else {
-                        alert("Ошибка!\n" + response.error.description);
-                    }
+            sendRequest('post', '/hotel/admin/reserve_room', JSON.stringify(jsonDataForReservation), function (response) {
+                if (response.success) {
+                    alert("Номер успешно забранирован!");
+                    getBill();
+                    rooms = {};
+                    currentRoom = null;
+                    $('#roomsTableBody').remove();
+                    $('#roomsTable').append("<tbody id='roomsTableBody' />");
+                    getRoomsList();
+                } else {
+                    alert("Ошибка!\n" + response.error.description);
                 }
-            }));
+            });
         };
 
         $("#employees").on("click", function () {
