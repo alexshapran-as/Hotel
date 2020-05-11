@@ -11,12 +11,10 @@ import room.{Room, RoomClass, RoomExtraOptions, RoomReservation}
 import util.Utils
 
 import scala.util.{Failure, Success}
-//import org.slf4j.LoggerFactory
 import staff.Employee
 import util.Utils._
 
-object AdminApiService extends HttpRouteUtils with Directives {
-    //  protected val logger = LoggerFactory.getLogger(getClass)
+object ManagerApiService extends HttpRouteUtils with Directives {
 
     def fillRommDescription(msa: MSA): MSA = (RoomClass.withName(msa("class").toString) match {
         case RoomClass.ROH =>
@@ -131,7 +129,7 @@ object AdminApiService extends HttpRouteUtils with Directives {
 
     def getRoute: Route =
         get("start_page") {
-            getFromResource("web/admin_page.html")
+            getFromResource("web/manager_page.html")
         } ~
             validateRequiredSession { session =>
                 respondWithJsonContentType {
@@ -192,81 +190,6 @@ object AdminApiService extends HttpRouteUtils with Directives {
                                         Utils.getAllPartsOfDateAsMap(Utils.formattedDateToMillis(checkInDate), "checkInDate")("checkInDate.day").toLong
                                     val totalCost = Room.fromMSA(msa).calculateRoomCost(reservation.extraOptions, reservation.client)
                                     newListMsa :+ msa ++ fillRommDescription(msa) ++ Map("checkInDate" -> checkInDate, "checkOutDate" -> checkOutDate, "totalCost" -> totalCost * (countOfDays + 1), "fio" -> fio)
-                                }
-                            }.filter(msa => msa("fio").toString.nonEmpty)
-                            complete(getOkResponse(roomsList))
-                        } ~
-                        post("accommodation_info_list") {
-                            val currentDateMillis = Utils.getDayStartInMillis(System.currentTimeMillis())
-                            val roomsList: List[MSA] = Room.findAllRoomsMSA.filter { msa =>
-                                msa("reservations").asInstanceOf[List[MSA]] match {
-                                    case List() =>
-                                        false
-                                    case reservations =>
-                                        reservations.foldLeft(false) { (busyRoom, reservation) =>
-                                            busyRoom match {
-                                                case true =>
-                                                    busyRoom
-                                                case false =>
-                                                    val reservedCheckInDate = Utils.formattedDateToMillis(reservation("checkInDate").toString)
-                                                    val reservedCheckOutDate = Utils.formattedDateToMillis(reservation("checkOutDate").toString)
-                                                    if (currentDateMillis >= reservedCheckInDate && currentDateMillis <= reservedCheckOutDate) {
-                                                        true
-                                                    } else {
-                                                        false
-                                                    }
-                                            }
-                                        }
-                                }
-                            }.foldLeft(List.empty[MSA]) { (newRoomsList, msa) =>
-                                newRoomsList ++ msa("reservations").asInstanceOf[List[MSA]].filter { reservation =>
-                                    val reservedCheckInDate = Utils.formattedDateToMillis(reservation("checkInDate").toString)
-                                    val reservedCheckOutDate = Utils.formattedDateToMillis(reservation("checkOutDate").toString)
-                                    if (currentDateMillis >= reservedCheckInDate && currentDateMillis <= reservedCheckOutDate) {
-                                        true
-                                    } else {
-                                        false
-                                    }
-                                }.foldLeft(List.empty[MSA]) { (newListMsa, reservationMsa) =>
-                                    val reservation = RoomReservation.fromMSA(reservationMsa)
-                                    val (checkInDate, checkOutDate) = (reservation.checkInDate, reservation.checkOutDate)
-                                    val (fio, birthDate, seriesNumberPassport, address) = reservation.client match {
-                                        case Client(_, lastName, firstName, surName, birthDate, seriesNumberPassport, address) =>
-                                            (lastName.nonEmpty, firstName.nonEmpty, surName.nonEmpty) match {
-                                                case (true, true, true) =>
-                                                    (lastName + " " + firstName + " " + surName, birthDate, seriesNumberPassport, address)
-                                                case _ =>
-                                                    ("", "", "", "")
-                                            }
-                                        case GroupOfClients(_, client, _, _) =>
-                                            (client.lastName.nonEmpty, client.firstName.nonEmpty, client.surName.nonEmpty) match {
-                                                case (true, true, true) =>
-                                                    (client.lastName + " " + client.firstName + " " + client.surName, client.birthDate, client.seriesNumberPassport, client.address)
-                                                case _ =>
-                                                    ("", "", "", "")
-                                            }
-                                    }
-                                    var extraOptions = List.empty[String]
-                                    if (reservation.extraOptions.extraBed) {
-                                        extraOptions = extraOptions :+ "дополнительная кровать"
-                                    }
-                                    if (reservation.extraOptions.child) {
-                                        extraOptions = extraOptions :+ "ребенок"
-                                    }
-                                    if (reservation.extraOptions.bedBreakfast) {
-                                        extraOptions = extraOptions :+ "завтрак"
-                                    }
-                                    if (reservation.extraOptions.allInclusive) {
-                                        extraOptions = extraOptions :+ "все включено"
-                                    }
-                                    val countOfDays = Utils.getAllPartsOfDateAsMap(Utils.formattedDateToMillis(checkOutDate), "checkOutDate")("checkOutDate.day").toLong -
-                                        Utils.getAllPartsOfDateAsMap(Utils.formattedDateToMillis(checkInDate), "checkInDate")("checkInDate.day").toLong
-                                    val totalCost = Room.fromMSA(msa).calculateRoomCost(reservation.extraOptions, reservation.client)
-                                    newListMsa :+ msa ++ fillRommDescription(msa) ++
-                                        Map("checkInDate" -> checkInDate, "checkOutDate" -> checkOutDate,
-                                            "totalCost" -> totalCost * (countOfDays + 1), "fio" -> fio,
-                                            "seriesNumberPassport" -> seriesNumberPassport, "birthDate" -> birthDate, "address" -> address,
-                                            "extraOptions" -> extraOptions.mkString(","))
                                 }
                             }.filter(msa => msa("fio").toString.nonEmpty)
                             complete(getOkResponse(roomsList))

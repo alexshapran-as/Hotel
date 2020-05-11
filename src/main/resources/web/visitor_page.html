@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Hotel Admin Page</title>
+    <title>Hotel Visitor Page</title>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.62/pdfmake.min.js" integrity="sha256-wHsYlzQ9EnjIdWOKOlQcOIw4imM+CDwRJ6NhkvJ96iY=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js" integrity="sha256-c3RzsUWg+y2XljunEQS0LqWdQ04X1D3j22fd/8JCAKw=" crossorigin="anonymous"></script>
@@ -84,24 +84,6 @@
             transition: all 300ms cubic-bezier(0.250, 0.250, 0.750, 0.750); /* linear */
         }
 
-        .deleteEmployee {
-            background: white;
-            display:block;
-            border:1px solid black;
-            font-family: 'Dosis', sans;
-            font-weight: normal;
-            color: black;
-            text-transform:uppercase;
-            text-decoration:none;
-            text-align:center;
-        }
-
-        .deleteEmployee:hover {
-            background: black;
-            border:1px solid white;
-            color: white;
-        }
-
         .openReserveDialog {
             background: white;
             display:block;
@@ -160,107 +142,6 @@
 <body>
 <div id="mainDiv" class="container" style="font-family: 'Dosis', sans; text-transform:uppercase; min-width: 1000px">
     <div id="user" class="user"></div>
-    <div class='modal fade' id='employeesModalWindow' tabindex='-1' role='dialog' aria-hidden='true'>
-        <div class='modal-dialog modal-xlg' style='width: 1200px'>
-            <div class='modal-content'>
-                <div class='modal-header'>
-                    <h1>Сотрудники</h1>
-                </div>
-                <div class='modal-body'>
-                    <table class="table" id="tableForEmployees">
-                        <thead>
-                        <tr>
-                            <th>Username</th>
-                            <th>Фамилия</th>
-                            <th>Имя</th>
-                            <th>Отчество</th>
-                            <th>Дата рождения</th>
-                            <th>Серия и номер паспорта</th>
-                            <th>Адрес</th>
-                            <th>Зарплата</th>
-                            <th>Действие</th>
-                        </tr>
-                        </thead>
-                        <tbody id="tableForEmployeesBody">
-                        </tbody>
-                    </table>
-                </div>
-                <div class='modal-footer'>
-                    <button id='addEmployee' type='submit' class='beautyButton'
-                            style='cursor: pointer;margin-left: 5px;'>Добавить сотрудника
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class='modal fade' id='addEmployeeModalWindow' tabindex='-1' role='dialog' aria-hidden='true'>
-        <div class='modal-dialog modal-xlg' style='width: 1200px'>
-            <div class='modal-content'>
-                <div class='modal-header'>
-                    <h1>Добавление Сотрудника</h1>
-                </div>
-                <div class='modal-body'>
-                        <label for="userName" style="font-weight: normal">Username :
-                            <input id="userName" name="userName" type="text" value="" class="form-control"
-                                   style="width: 1100px; font-size: 12px;">
-                        </label>
-                        <br>
-                        <label for="password" style="font-weight: normal">Password :
-                            <input id="password" name="password" type="password" value="" class="form-control"
-                                   style="width: 1100px; font-size: 12px;">
-                        </label>
-                        <br>
-                        <label for="roles" style="font-weight: normal">Должность :
-                            <select id="roles" class="select" style="width: 1100px; height: 35px; font-size: 12px;">
-                                <option value="admin">ADMIN</option>
-                                <option value="manager">MANAGER</option>
-                                <option value="staff">STAFF</option>
-                            </select>
-                        </label>
-                        <br>
-                        <label for="lastName" style="font-weight: normal">Фамилия :
-                            <input id="lastName" name="lastName" type="text" value="" class="form-control"
-                                   style="width: 1100px; font-size: 12px;">
-                        </label>
-                        <br>
-                        <label for="firstName" style="font-weight: normal">Имя :
-                            <input id="firstName" name="firstName" type="text" value="" class="form-control"
-                                   style="width: 1100px; font-size: 12px;">
-                        </label>
-                        <br>
-                        <label for="surName" style="font-weight: normal">Отчество :
-                            <input id="surName" name="surName" type="text" value="" class="form-control"
-                                   style="width: 1100px; font-size: 12px;">
-                        </label>
-                        <br>
-                        <label for="birthDate" style="font-weight: normal">Дата рождения :
-                            <input id="birthDate" name="birthDate" type="date" value="1970-01-01" class="form-control"
-                                   style="width: 1100px; font-size: 12px;">
-                        </label>
-                        <br>
-                        <label for="seriesNumberPassport" style="font-weight: normal">Серия и номер паспорта :
-                            <input id="seriesNumberPassport" name="seriesNumberPassport" type="text" value=""
-                                   class="form-control" style="width: 1100px; font-size: 12px;">
-                        </label>
-                        <br>
-                        <label for="address" style="font-weight: normal">Адрес :
-                            <input id="address" name="address" type="text" value="" class="form-control"
-                                   style="width: 1100px; font-size: 12px;">
-                        </label>
-                        <br>
-                        <label for="salary" style="font-weight: normal">Оклад :
-                            <input id="salary" name="salary" type="text" value="" class="form-control"
-                                   style="width: 1100px; font-size: 12px;">
-                        </label>
-                </div>
-                <div class='modal-footer'>
-                    <button id='addEmployeeInModal' type="submit" class="beautyButton"
-                            style='cursor: pointer;margin-left: 5px;'>Добавить
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class='modal fade' id='roomsModalWindow' tabindex='-1' role='dialog' aria-hidden='true'>
         <div class='modal-dialog modal-xlg' style='width: 1200px'>
             <div class='modal-content'>
@@ -268,18 +149,18 @@
                     <h1>Номера</h1>
                 </div>
                 <div class='modal-body'>
-                        <label>
-                            <div style="align-content: center">Поиск свободного номера на дату</div>
-                            <label for="findFreeRoomsStartDate" style="font-weight: normal">Дата заселения :
-                                <input id="findFreeRoomsStartDate" name="startDate" type="date" value="2017-01-01"
-                                       class="form-control" style="width: 285px; font-size: 14px;">
-                            </label>
-                            <label for="findFreeRoomsEndDate" style="font-weight: normal">Дата выселения :
-                                <input id="findFreeRoomsEndDate" name="endDate" type="date" value="2017-01-01"
-                                       class="form-control" style="width: 285px; font-size: 14px;">
-                            </label>
-                            <button id='findFreeRoomsByDate' type="submit" class="beautyButton" style='cursor: pointer;margin-left: 5px;'>Найти</button>
+                    <label>
+                        <div style="align-content: center">Поиск свободного номера на дату</div>
+                        <label for="findFreeRoomsStartDate" style="font-weight: normal">Дата заселения :
+                            <input id="findFreeRoomsStartDate" name="startDate" type="date" value="2017-01-01"
+                                   class="form-control" style="width: 285px; font-size: 14px;">
                         </label>
+                        <label for="findFreeRoomsEndDate" style="font-weight: normal">Дата выселения :
+                            <input id="findFreeRoomsEndDate" name="endDate" type="date" value="2017-01-01"
+                                   class="form-control" style="width: 285px; font-size: 14px;">
+                        </label>
+                        <button id='findFreeRoomsByDate' type="submit" class="beautyButton" style='cursor: pointer;margin-left: 5px;'>Найти</button>
+                    </label>
                     <hr>
                     <table class="table" id="roomsTable">
                         <thead>
@@ -370,76 +251,6 @@
             </div>
         </div>
     </div>
-    <div class='modal fade' id='reservationsModalWindow' tabindex='-1' role='dialog' aria-hidden='true'>
-        <div class='modal-dialog modal-xlg' style='width: 1200px'>
-            <div class='modal-content'>
-                <div class='modal-header'>
-                    <h1>Брони</h1>
-                </div>
-                <div class='modal-body'>
-                    <table class="table" id="reservationsTable">
-                        <thead>
-                        <tr>
-                            <th>Описание</th>
-                            <th>Класс номера</th>
-                            <th>Количество мест</th>
-                            <th>Холодильник</th>
-                            <th>Минибар</th>
-                            <th>Телевизор</th>
-                            <th>Вид на сад</th>
-                            <th>Вид на горы</th>
-                            <th>Вид на море</th>
-                            <th>Общая стоимость пребывания ₽</th>
-                            <th>ФИО</th>
-                            <th>Даты пребывания</th>
-                        </tr>
-                        </thead>
-                        <tbody id="reservationsTableBody">
-                        </tbody>
-                    </table>
-                </div>
-                <div class='modal-footer'>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class='modal fade' id='accommodationInfoModalWindow' tabindex='-1' role='dialog' aria-hidden='true'>
-        <div class='modal-dialog modal-xlg' style='width: 1200px'>
-            <div class='modal-content'>
-                <div class='modal-header'>
-                    <h1>Информация о проживании</h1>
-                </div>
-                <div class='modal-body'>
-                    <table class="table" id="accommodationInfoTable">
-                        <thead>
-                        <tr>
-                            <th>Описание</th>
-                            <th>Класс номера</th>
-                            <th>Количество мест</th>
-                            <th>Холодильник</th>
-                            <th>Минибар</th>
-                            <th>Телевизор</th>
-                            <th>Вид на сад</th>
-                            <th>Вид на горы</th>
-                            <th>Вид на море</th>
-                            <th>Дополнительные опции</th>
-                            <th>Общая стоимость пребывания ₽</th>
-                            <th>ФИО</th>
-                            <th>Серия и номер паспорта</th>
-                            <th>Дата рождения</th>
-                            <th>Адрес</th>
-                            <th>Даты пребывания</th>
-                        </tr>
-                        </thead>
-                        <tbody id="accommodationInfoTableBody">
-                        </tbody>
-                    </table>
-                </div>
-                <div class='modal-footer'>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class='modal fade' id='reserveRoomModalWindow' tabindex='-1' role='dialog' aria-hidden='true'>
         <div class='modal-dialog modal-xlg' style='width: 1200px'>
             <div class='modal-content'>
@@ -489,18 +300,11 @@
             </div>
         </div>
     </div>
-    <button id='reservations' type='submit' class='beautyButton' style='cursor: pointer;margin-left: 5px;'>Брони</button>
-    <br>
     <button id='busyRooms' type='submit' class='beautyButton' style='cursor: pointer;margin-left: 5px;'>Занятые сейчас номера</button>
     <br>
     <button id='freeRooms' type='submit' class='beautyButton' style='cursor: pointer;margin-left: 5px;'>Свободные сейчас номера</button>
     <br>
-    <button id='accommodationInfo' type='submit' class='beautyButton' style='cursor: pointer;margin-left: 5px;'>Информация о проживании</button>
-    <br>
     <button id='rooms' type='submit' class='beautyButton' style='cursor: pointer;margin-left: 5px;'>Номера</button>
-    <br>
-    <button id='employees' type='submit' class='beautyButton' style='cursor: pointer;margin-left: 5px;'>Сотрудники
-    </button>
 </div>
 </body>
 
@@ -513,222 +317,7 @@
 
     $(function () {
 
-        sendRequest('post', '/hotel_auth/check', null, function (response) {
-           if (response.success) {
-               console.log("Auth success");
-               $('#user').append('<br>' + response.result.user + '<br>');
-           } else {
-               console.log("Auth failed");
-           }
-        });
-
-        function getEmployeesList() {
-            sendRequest('post', '/hotel/admin/employees_list', null, function (response) {
-                if (response.success) {
-                    response.result.map(employee => {
-                        var tr = $('<tr>');
-                        tr.append('<td>' + employee.username + '</td>');
-                        tr.append('<td>' + employee.lastName + '</td>');
-                        tr.append('<td>' + employee.firstName + '</td>');
-                        tr.append('<td>' + employee.surName + '</td>');
-                        tr.append('<td>' + employee.birthDate + '</td>');
-                        tr.append('<td>' + employee.seriesNumberPassport + '</td>');
-                        tr.append('<td>' + employee.address + '</td>');
-                        tr.append('<td>' + employee.salary + '</td>');
-                        tr.append("<td><button class='deleteEmployee' employeeUserName='" + employee.username + "' style='cursor: pointer;margin-left: 5px;'>Удалить</button></td>");
-                        $('#tableForEmployeesBody').append(tr);
-                    });
-                    $(".deleteEmployee").on("click",function () {
-                        sendRequest('post', '/hotel/admin/delete_employee', JSON.stringify({ "userName": $(this).attr("employeeUserName")}), function (response) {
-                            if (response.success) {
-                                $('#tableForEmployeesBody').remove();
-                                $('#tableForEmployees').append("<tbody id='tableForEmployeesBody' />");
-                                getEmployeesList();
-                            } else {
-                                alert("Error deleting");
-                            }
-                        });
-                    });
-                } else {
-                    alert("Nothing found");
-                }
-            });
-        }
-
-        $("#addEmployeeInModal").on("click", function () {
-                var json = JSON.stringify({
-                    "userName": document.getElementById("userName").value,
-                    "password": document.getElementById("password").value,
-                    "roles": document.getElementById("roles").value,
-                    "lastName": document.getElementById("lastName").value,
-                    "firstName": document.getElementById("firstName").value,
-                    "surName": document.getElementById("surName").value,
-                    "birthDate": document.getElementById("birthDate").value,
-                    "seriesNumberPassport": document.getElementById("seriesNumberPassport").value,
-                    "address": document.getElementById("address").value,
-                    "salary": document.getElementById("salary").value
-                });
-                sendRequest('post', '/hotel/admin/add_employee', json, function (response) {
-                    if (response.success) {
-                        alert("Сотрудник успешно добавлен!")
-                        $('#tableForEmployeesBody').remove();
-                        $('#tableForEmployees').append("<tbody id='tableForEmployeesBody' />");
-                        getEmployeesList();
-                    } else {
-                        alert("FAIL!\n" + response.error.description)
-                    }
-                });
-        });
-
-        function getReservationsList() {
-            sendRequest('post', '/hotel/admin/reservations_list', null, function (response) {
-                if (response.success) {
-                    $('#reservationsTableBody').html("");
-                    response.result.map(reservedRoom => {
-                        var fridge, miniBar, tv, gardenView, mountainView, seaView;
-                        if (reservedRoom.options.fridge) {
-                            fridge = "Да"
-                        } else {
-                            fridge = "Нет"
-                        }
-                        if (reservedRoom.options.miniBar) {
-                            miniBar = "Да"
-                        } else {
-                            miniBar = "Нет"
-                        }
-                        if (reservedRoom.options.tv) {
-                            tv = "Да"
-                        } else {
-                            tv = "Нет"
-                        }
-                        if (reservedRoom.options.gardenView) {
-                            gardenView = "Да"
-                        } else {
-                            gardenView = "Нет"
-                        }
-                        if (reservedRoom.options.mountainView) {
-                            mountainView = "Да"
-                        } else {
-                            mountainView = "Нет"
-                        }
-                        if (reservedRoom.options.fridge) {
-                            seaView = "Да"
-                        } else {
-                            seaView = "Нет"
-                        }
-                        var tr = $('<tr>');
-                        tr.append('<td>' + reservedRoom.description + '</td>');
-                        tr.append('<td>' + reservedRoom.class + '</td>');
-                        tr.append('<td>' + reservedRoom.seatsNumber + '</td>');
-                        tr.append('<td>' + fridge + '</td>');
-                        tr.append('<td>' + miniBar + '</td>');
-                        tr.append('<td>' + tv + '</td>');
-                        tr.append('<td>' + gardenView + '</td>');
-                        tr.append('<td>' + mountainView + '</td>');
-                        tr.append('<td>' + seaView + '</td>');
-                        tr.append('<td>' + reservedRoom.totalCost + '</td>');
-                        tr.append('<td>' + reservedRoom.fio + '</td>');
-                        tr.append(
-                            '<td>' +
-                            '<table class="table">' +
-                            '    <thead>\n' +
-                            '    <tr>\n' +
-                            '        <th>Дата заселения</th>\n' +
-                            '        <th>Дата выселения</th>\n' +
-                            '    </tr>\n' +
-                            '    </thead>\n' +
-                            '    <tbody>\n' +
-                            '    <tr>\n' +
-                            '       <td>' + reservedRoom.checkInDate + '</td>\n' +
-                            '       <td>' + reservedRoom.checkOutDate + '</td>\n' +
-                            '    </tr>\n' +
-                            '    </tbody>\n' +
-                            '</table>' +
-                            '</td>');
-                        $('#reservationsTableBody').append(tr);
-                    });
-                } else {
-                    alert("Nothing found");
-                }
-            });
-        };
-
-        function getAccommodationInfoList() {
-            sendRequest('post', '/hotel/admin/accommodation_info_list', null, function (response) {
-                if (response.success) {
-                    $('#accommodationInfoTableBody').html("");
-                    response.result.map(reservedRoom => {
-                        var fridge, miniBar, tv, gardenView, mountainView, seaView;
-                        if (reservedRoom.options.fridge) {
-                            fridge = "Да"
-                        } else {
-                            fridge = "Нет"
-                        }
-                        if (reservedRoom.options.miniBar) {
-                            miniBar = "Да"
-                        } else {
-                            miniBar = "Нет"
-                        }
-                        if (reservedRoom.options.tv) {
-                            tv = "Да"
-                        } else {
-                            tv = "Нет"
-                        }
-                        if (reservedRoom.options.gardenView) {
-                            gardenView = "Да"
-                        } else {
-                            gardenView = "Нет"
-                        }
-                        if (reservedRoom.options.mountainView) {
-                            mountainView = "Да"
-                        } else {
-                            mountainView = "Нет"
-                        }
-                        if (reservedRoom.options.fridge) {
-                            seaView = "Да"
-                        } else {
-                            seaView = "Нет"
-                        }
-                        var tr = $('<tr>');
-                        tr.append('<td>' + reservedRoom.description + '</td>');
-                        tr.append('<td>' + reservedRoom.class + '</td>');
-                        tr.append('<td>' + reservedRoom.seatsNumber + '</td>');
-                        tr.append('<td>' + fridge + '</td>');
-                        tr.append('<td>' + miniBar + '</td>');
-                        tr.append('<td>' + tv + '</td>');
-                        tr.append('<td>' + gardenView + '</td>');
-                        tr.append('<td>' + mountainView + '</td>');
-                        tr.append('<td>' + seaView + '</td>');
-                        tr.append('<td>' + reservedRoom.extraOptions + '</td>');
-                        tr.append('<td>' + reservedRoom.totalCost + '</td>');
-                        tr.append('<td>' + reservedRoom.fio + '</td>');
-                        tr.append('<td>' + reservedRoom.seriesNumberPassport + '</td>');
-                        tr.append('<td>' + reservedRoom.birthDate + '</td>');
-                        tr.append('<td>' + reservedRoom.address + '</td>');
-                        tr.append(
-                            '<td>' +
-                            '<table class="table">' +
-                            '    <thead>\n' +
-                            '    <tr>\n' +
-                            '        <th>Дата заселения</th>\n' +
-                            '        <th>Дата выселения</th>\n' +
-                            '    </tr>\n' +
-                            '    </thead>\n' +
-                            '    <tbody>\n' +
-                            '    <tr>\n' +
-                            '       <td>' + reservedRoom.checkInDate + '</td>\n' +
-                            '       <td>' + reservedRoom.checkOutDate + '</td>\n' +
-                            '    </tr>\n' +
-                            '    </tbody>\n' +
-                            '</table>' +
-                            '</td>');
-                        $('#accommodationInfoTableBody').append(tr);
-                    });
-                } else {
-                    alert("Nothing found");
-                }
-            });
-        };
+        $('#user').append('<br>Visitor<br>');
 
         var rooms = {};
         var currentRoom;
@@ -914,7 +503,7 @@
         };
 
         function getRoomsList() {
-            sendRequest('post', '/hotel/admin/rooms_list', null, function (response) {
+            sendRequest('post', '/hotel/visitor/rooms_list', null, function (response) {
                 if (response.success) {
                     $('#roomsTableBody').html("");
                     fillRooms(response, $('#roomsTableBody'));
@@ -925,7 +514,7 @@
         };
 
         function getBusyRoomsList() {
-            sendRequest('post', '/hotel/admin/busy_rooms_list', null, function (response) {
+            sendRequest('post', '/hotel/visitor/busy_rooms_list', null, function (response) {
                 if (response.success) {
                     $('#busyRoomsTableBody').html("");
                     fillRooms(response, $('#busyRoomsTableBody'));
@@ -936,7 +525,7 @@
         }
 
         function getFreeRoomsList() {
-            sendRequest('post', '/hotel/admin/free_rooms_list', null, function (response) {
+            sendRequest('post', '/hotel/visitor/free_rooms_list', null, function (response) {
                 if (response.success) {
                     $('#freeRoomsTableBody').html("");
                     fillRooms(response, $('#freeRoomsTableBody'));
@@ -947,7 +536,7 @@
         };
 
         function getFilteredByDateRoomList() {
-            sendRequest('post', '/hotel/admin/filtered_rooms_list', JSON.stringify({
+            sendRequest('post', '/hotel/visitor/filtered_rooms_list', JSON.stringify({
                 "checkInDate": document.getElementById("findFreeRoomsStartDate").value,
                 "checkOutDate": document.getElementById("findFreeRoomsEndDate").value
             }), function (response) {
@@ -961,7 +550,7 @@
         };
 
         function getGroupId() {
-            sendRequest('post', '/hotel/admin/new_group_id', null, function (response) {
+            sendRequest('post', '/hotel/visitor/new_group_id', null, function (response) {
                 if (response.success) {
                     $("#groupId").val(response.result.groupId);
                 } else {
@@ -1004,7 +593,7 @@
                 }
                 jsonDataForReservation.reservations.push(reservation);
             }
-            sendRequest('post', '/hotel/admin/calculate_room_cost', JSON.stringify(jsonDataForReservation), function (response) {
+            sendRequest('post', '/hotel/visitor/calculate_room_cost', JSON.stringify(jsonDataForReservation), function (response) {
                 if (response.success) {
                     if (document.getElementById("totalCost") != null) {
                         document.getElementById("totalCost").remove();
@@ -1119,7 +708,7 @@
             }
 
             var totalCost;
-            sendRequest('post', '/hotel/admin/calculate_room_cost', JSON.stringify(jsonDataForReservation), function (response) {
+            sendRequest('post', '/hotel/visitor/calculate_room_cost', JSON.stringify(jsonDataForReservation), function (response) {
                 if (response.success) {
                     totalCost = response.result.totalCost;
                 } else {
@@ -1250,7 +839,7 @@
                 }
                 jsonDataForReservation.reservations.push(reservation);
             }
-            sendRequest('post', '/hotel/admin/reserve_room', JSON.stringify(jsonDataForReservation), function (response) {
+            sendRequest('post', '/hotel/visitor/reserve_room', JSON.stringify(jsonDataForReservation), function (response) {
                 if (response.success) {
                     alert("Номер успешно забранирован!");
                     getBill();
@@ -1264,17 +853,6 @@
                 }
             });
         };
-
-        $("#employees").on("click", function () {
-            $('#employeesModalWindow').modal('show');
-            $('#tableForEmployeesBody').remove();
-            $('#tableForEmployees').append("<tbody id='tableForEmployeesBody' />");
-            getEmployeesList();
-        });
-
-        $("#addEmployee").on("click", function () {
-            $('#addEmployeeModalWindow').modal('show');
-        });
 
         $("#rooms").on("click", function () {
             rooms = {};
@@ -1310,22 +888,8 @@
             getFilteredByDateRoomList();
         });
 
-        $("#reservations").on("click", function () {
-            $('#reservationsModalWindow').modal('show');
-            $('#reservationsTableBody').remove();
-            $('#reservationsTable').append("<tbody id='reservationsTableBody' />");
-           getReservationsList();
-        });
-
-        $("#accommodationInfo").on("click", function () {
-            $('#accommodationInfoModalWindow').modal('show');
-            $('#accommodationInfoTableBody').remove();
-            $('#accommodationInfoTable').append("<tbody id='accommodationInfoTableBody' />");
-            getAccommodationInfoList();
-        });
-
         $("#getGroupId").on("click", function () {
-           getGroupId();
+            getGroupId();
         });
 
         $("#getRoomTotalCost").on("click", function() {

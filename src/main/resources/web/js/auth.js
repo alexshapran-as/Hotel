@@ -57,7 +57,7 @@ function auth(type, url, data, responseProcessor) {
             "        <div class='modal-dialog modal-xlg' style='width: 1200px'>\n" +
             "            <div class='modal-content'>\n" +
             "                <div class='modal-header' id='authModalHeader'>\n" +
-            "                    <div id='login-fail' style='background-color: #ffcccc; text-align: center; display: none'>Username or Password is incorrect</div>" +
+            "                    <div id='login-fail' style='background-color: #ffcccc; text-align: center; display: none'>Username or loginPassword is incorrect</div>" +
             "                </div>\n" +
             "                <div class='modal-body' style='font-family: \"Dosis\", sans; text-transform:uppercase'>\n" +
             "                    <div style='font-size: 16px; margin-left: 40%; margin-right: 40%;'>\n" +
@@ -65,8 +65,8 @@ function auth(type, url, data, responseProcessor) {
             "                            <input id='username' name='username' type='text' class='form-control' style='width: 205px; font-size: 12px;'>\n" +
             "                        </label>\n" +
             "                        <br>\n" +
-            "                        <label for='password' style='font-weight: normal'>Password :\n" +
-            "                            <input id='password' name='password' type='password' class='form-control' style='width: 205px; font-size: 12px;'>\n" +
+            "                        <label for='loginPassword' style='font-weight: normal'>Password :\n" +
+            "                            <input id='loginPassword' name='loginPassword' type='password' class='form-control' style='width: 205px; font-size: 12px;'>\n" +
             "                        </label>\n" +
             "                        <br>\n" +
             "                        <label for='rememberMe' style='font-weight: normal;margin-left: 10px;'>\n" +
@@ -89,14 +89,14 @@ function auth(type, url, data, responseProcessor) {
             $("#login-fail").hide()
             var jsonData = {
                 userName: $('#username').val(),
-                password: $('#password').val(),
+                loginPassword: $('#loginPassword').val(),
                 rememberMe: $("#rememberMe").is(":checked")
             };
             $.post('/hotel_auth/login', JSON.stringify(jsonData), function (response) {
                 if (response.success) {
                     $('#authModalDialog').modal('hide');
                     $('#username').val('')
-                    $('#password').val('')
+                    $('#loginPassword').val('')
                     sendRequest(type, url, data, responseProcessor);
                 } else {
                     $("#login-fail").show()

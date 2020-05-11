@@ -22,30 +22,25 @@ case object MainApiService extends HttpRouteUtils with Directives {
                     pathPrefix("hotel_auth") {
                         MongoApiService.getRoute(pathPrefixRole)
                     } ~
-                    tokenCsrfProtectionDirective {
-                        pathPrefix("hotel") {
-                            pathPrefix("admin") {
-                                pathPrefixRole = "admin"
-                                AdminApiService.getRoute
-                            } ~
-                                pathPrefix("manager") {
-                                    pathPrefixRole = "manager"
-                                    get("start_page") {
-                                        getFromResource("")
-                                    }
+                    pathPrefix("hotel") {
+                        pathPrefix("visitor") {
+                            pathPrefixRole = "visitor"
+                            VisitorApiService.getRoute
+                        } ~
+                            tokenCsrfProtectionDirective {
+                                pathPrefix("admin") {
+                                    pathPrefixRole = "admin"
+                                    AdminApiService.getRoute
                                 } ~
-                                pathPrefix("staff") {
-                                    pathPrefixRole = "staff"
-                                    get("start_page") {
-                                        getFromResource("")
+                                    pathPrefix("manager") {
+                                        pathPrefixRole = "manager"
+                                        ManagerApiService.getRoute
+                                    } ~
+                                    pathPrefix("staff") {
+                                        pathPrefixRole = "staff"
+                                        StaffApiService.getRoute
                                     }
-                                } ~
-                                pathPrefix("visitor") {
-                                    get("start_page") {
-                                        getFromResource("")
-                                    }
-                                }
-                        }
+                            }
                     }
             }
 

@@ -1,6 +1,6 @@
 package service
 
-import akka.http.scaladsl.server.{Directives, Route}
+import akka.http.scaladsl.server.{AuthorizationFailedRejection, Directives, Route}
 import api.web.{HttpRouteUtils, UserSessionData}
 import authenticator.{MongoAuthApi, Roles}
 //import org.slf4j.LoggerFactory
@@ -13,7 +13,7 @@ object MongoApiService extends HttpRouteUtils with Directives {
       post("login") {
         extractPostRequest { case (postStr, postMsa) =>
           val userName = postMsa.getOrElse("userName", throw new IllegalArgumentException("Username was not sent")).toString
-          val password = postMsa.getOrElse("password", throw new IllegalArgumentException("Password was not sent")).toString
+          val password = postMsa.getOrElse("loginPassword", throw new IllegalArgumentException("Password was not sent")).toString
           val rememberMe = postMsa.getOrElse("rememberMe", throw new IllegalArgumentException("rememberMe was not sent")).toString.toBoolean
             MongoAuthApi.authorize(userName, password) match {
               case Some(roles) =>
@@ -51,9 +51,9 @@ object MongoApiService extends HttpRouteUtils with Directives {
             } ~
                 post("check") {
                   if (MongoAuthApi.hasAccessToWithRoles(pathPrefix, session.groups))
-                    complete(getOkResponse)
+                    complete(getOkResponse(Map("user" -> session.groups.mkString(""))))
                   else
-                    complete(getErrorResponse(402, "Access denied"))
+                    reject(AuthorizationFailedRejection)
                 }
           }
     }
