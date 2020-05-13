@@ -57,7 +57,7 @@ function auth(type, url, data, responseProcessor) {
             "        <div class='modal-dialog modal-xlg' style='width: 1200px'>\n" +
             "            <div class='modal-content'>\n" +
             "                <div class='modal-header' id='authModalHeader'>\n" +
-            "                    <div id='login-fail' style='background-color: #ffcccc; text-align: center; display: none'>Username or loginPassword is incorrect</div>" +
+            "                    <div id='login-fail' style='background-color: #ffcccc; text-align: center; display: none'>Username or Password is incorrect</div>" +
             "                </div>\n" +
             "                <div class='modal-body' style='font-family: \"Dosis\", sans; text-transform:uppercase'>\n" +
             "                    <div style='font-size: 16px; margin-left: 40%; margin-right: 40%;'>\n" +

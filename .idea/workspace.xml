@@ -2,18 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3d0faa53-9f20-4c43-8b66-c0cfab831cc1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/web/manager_page.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/web/staff_page.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/web/visitor_page.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/service/ManagerApiService.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/service/StaffApiService.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/service/VisitorApiService.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/assembly.sbt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/Hotel-build.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/Hotel-build.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/web/admin_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/web/admin_page.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/web/js/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/web/js/auth.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/Boot.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/Boot.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/service/AdminApiService.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/service/AdminApiService.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/service/MainApiService.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/service/MainApiService.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/service/MongoApiService.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/service/MongoApiService.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -58,7 +51,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/web" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Problems" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
@@ -157,7 +150,8 @@
       <workItem from="1588814626460" duration="377000" />
       <workItem from="1588850922658" duration="22735000" />
       <workItem from="1589117249950" duration="6173000" />
-      <workItem from="1589134965333" duration="10273000" />
+      <workItem from="1589134965333" duration="13767000" />
+      <workItem from="1589398110644" duration="235000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1586966948950</created>
@@ -187,7 +181,14 @@
       <option name="project" value="LOCAL" />
       <updated>1589155892355</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="fix bugs, complete version of admin, staff, manager, visitor pages">
+      <created>1589163664543</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1589163664543</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -202,7 +203,8 @@
     <MESSAGE value="rooms" />
     <MESSAGE value="rooms, reservations, busy/free rooms, accommodations" />
     <MESSAGE value="fix bugs, complete version of admin page" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix bugs, complete version of admin page" />
+    <MESSAGE value="fix bugs, complete version of admin, staff, manager, visitor pages" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix bugs, complete version of admin, staff, manager, visitor pages" />
   </component>
   <component name="WindowStateProjectService">
     <state x="779" y="401" key="#Notifications" timestamp="1588851242068">
@@ -230,85 +232,85 @@
       <screen x="0" y="23" width="1792" height="1017" />
     </state>
     <state x="639" y="451" key="#com.intellij.ide.util.TreeClassChooserDialog/0.23.1792.1017@0.23.1792.1017" timestamp="1586974680605" />
-    <state x="295" y="154" key="CommitChangelistDialog2" timestamp="1589155892174">
+    <state x="295" y="154" key="CommitChangelistDialog2" timestamp="1589163664385">
       <screen x="0" y="23" width="1792" height="1017" />
     </state>
-    <state x="295" y="154" key="CommitChangelistDialog2/0.23.1792.1017@0.23.1792.1017" timestamp="1589155892174" />
+    <state x="295" y="154" key="CommitChangelistDialog2/0.23.1792.1017@0.23.1792.1017" timestamp="1589163664385" />
     <state x="295" y="155" key="CommitChangelistDialog2/0.23.1792.1022@0.23.1792.1022" timestamp="1588851585564" />
     <state x="769" y="436" key="Github.ShareDialog" timestamp="1588851520734">
       <screen x="0" y="23" width="1792" height="1022" />
     </state>
     <state x="769" y="435" key="Github.ShareDialog/0.23.1792.1020@0.23.1792.1020" timestamp="1588851218089" />
     <state x="769" y="436" key="Github.ShareDialog/0.23.1792.1022@0.23.1792.1022" timestamp="1588851520733" />
-    <state width="1750" height="268" key="GridCell.Tab.0.bottom" timestamp="1589163353497">
+    <state width="1750" height="332" key="GridCell.Tab.0.bottom" timestamp="1589271167694">
       <screen x="0" y="23" width="1792" height="1017" />
     </state>
-    <state width="1750" height="268" key="GridCell.Tab.0.bottom/0.23.1792.1017@0.23.1792.1017" timestamp="1589163353497" />
+    <state width="1750" height="332" key="GridCell.Tab.0.bottom/0.23.1792.1017@0.23.1792.1017" timestamp="1589271167694" />
     <state width="1750" height="268" key="GridCell.Tab.0.bottom/0.23.1792.1020@0.23.1792.1020" timestamp="1588861271623" />
     <state width="1750" height="268" key="GridCell.Tab.0.bottom/0.23.1792.1022@0.23.1792.1022" timestamp="1588860757879" />
     <state width="1750" height="271" key="GridCell.Tab.0.bottom/0.23.1792.1024@0.23.1792.1024" timestamp="1588697597766" />
     <state width="1750" height="271" key="GridCell.Tab.0.bottom/0.23.1792.1026@0.23.1792.1026" timestamp="1588695938807" />
-    <state width="1750" height="268" key="GridCell.Tab.0.center" timestamp="1589163353496">
+    <state width="1750" height="332" key="GridCell.Tab.0.center" timestamp="1589271167694">
       <screen x="0" y="23" width="1792" height="1017" />
     </state>
-    <state width="1750" height="268" key="GridCell.Tab.0.center/0.23.1792.1017@0.23.1792.1017" timestamp="1589163353496" />
+    <state width="1750" height="332" key="GridCell.Tab.0.center/0.23.1792.1017@0.23.1792.1017" timestamp="1589271167694" />
     <state width="1750" height="268" key="GridCell.Tab.0.center/0.23.1792.1020@0.23.1792.1020" timestamp="1588861271622" />
     <state width="1750" height="268" key="GridCell.Tab.0.center/0.23.1792.1022@0.23.1792.1022" timestamp="1588860757879" />
     <state width="1750" height="271" key="GridCell.Tab.0.center/0.23.1792.1024@0.23.1792.1024" timestamp="1588697597765" />
     <state width="1750" height="271" key="GridCell.Tab.0.center/0.23.1792.1026@0.23.1792.1026" timestamp="1588695938806" />
-    <state width="1750" height="268" key="GridCell.Tab.0.left" timestamp="1589163353495">
+    <state width="1750" height="332" key="GridCell.Tab.0.left" timestamp="1589271167693">
       <screen x="0" y="23" width="1792" height="1017" />
     </state>
-    <state width="1750" height="268" key="GridCell.Tab.0.left/0.23.1792.1017@0.23.1792.1017" timestamp="1589163353495" />
+    <state width="1750" height="332" key="GridCell.Tab.0.left/0.23.1792.1017@0.23.1792.1017" timestamp="1589271167693" />
     <state width="1750" height="268" key="GridCell.Tab.0.left/0.23.1792.1020@0.23.1792.1020" timestamp="1588861271622" />
     <state width="1750" height="268" key="GridCell.Tab.0.left/0.23.1792.1022@0.23.1792.1022" timestamp="1588860757878" />
     <state width="1750" height="271" key="GridCell.Tab.0.left/0.23.1792.1024@0.23.1792.1024" timestamp="1588697597765" />
     <state width="1750" height="271" key="GridCell.Tab.0.left/0.23.1792.1026@0.23.1792.1026" timestamp="1588695938806" />
-    <state width="1750" height="268" key="GridCell.Tab.0.right" timestamp="1589163353496">
+    <state width="1750" height="332" key="GridCell.Tab.0.right" timestamp="1589271167694">
       <screen x="0" y="23" width="1792" height="1017" />
     </state>
-    <state width="1750" height="268" key="GridCell.Tab.0.right/0.23.1792.1017@0.23.1792.1017" timestamp="1589163353496" />
+    <state width="1750" height="332" key="GridCell.Tab.0.right/0.23.1792.1017@0.23.1792.1017" timestamp="1589271167694" />
     <state width="1750" height="268" key="GridCell.Tab.0.right/0.23.1792.1020@0.23.1792.1020" timestamp="1588861271623" />
     <state width="1750" height="268" key="GridCell.Tab.0.right/0.23.1792.1022@0.23.1792.1022" timestamp="1588860757879" />
     <state width="1750" height="271" key="GridCell.Tab.0.right/0.23.1792.1024@0.23.1792.1024" timestamp="1588697597766" />
     <state width="1750" height="271" key="GridCell.Tab.0.right/0.23.1792.1026@0.23.1792.1026" timestamp="1588695938807" />
-    <state width="1750" height="332" key="GridCell.Tab.1.bottom" timestamp="1589163290850">
+    <state width="1750" height="332" key="GridCell.Tab.1.bottom" timestamp="1589271167696">
       <screen x="0" y="23" width="1792" height="1017" />
     </state>
-    <state width="1750" height="332" key="GridCell.Tab.1.bottom/0.23.1792.1017@0.23.1792.1017" timestamp="1589163290850" />
+    <state width="1750" height="332" key="GridCell.Tab.1.bottom/0.23.1792.1017@0.23.1792.1017" timestamp="1589271167696" />
     <state width="1750" height="332" key="GridCell.Tab.1.bottom/0.23.1792.1020@0.23.1792.1020" timestamp="1588499921828" />
     <state width="1750" height="332" key="GridCell.Tab.1.bottom/0.23.1792.1022@0.23.1792.1022" timestamp="1588858709177" />
-    <state width="1750" height="332" key="GridCell.Tab.1.center" timestamp="1589163290850">
+    <state width="1750" height="332" key="GridCell.Tab.1.center" timestamp="1589271167695">
       <screen x="0" y="23" width="1792" height="1017" />
     </state>
-    <state width="1750" height="332" key="GridCell.Tab.1.center/0.23.1792.1017@0.23.1792.1017" timestamp="1589163290850" />
+    <state width="1750" height="332" key="GridCell.Tab.1.center/0.23.1792.1017@0.23.1792.1017" timestamp="1589271167695" />
     <state width="1750" height="332" key="GridCell.Tab.1.center/0.23.1792.1020@0.23.1792.1020" timestamp="1588499921828" />
     <state width="1750" height="332" key="GridCell.Tab.1.center/0.23.1792.1022@0.23.1792.1022" timestamp="1588858709176" />
-    <state width="1750" height="332" key="GridCell.Tab.1.left" timestamp="1589163290849">
+    <state width="1750" height="332" key="GridCell.Tab.1.left" timestamp="1589271167695">
       <screen x="0" y="23" width="1792" height="1017" />
     </state>
-    <state width="1750" height="332" key="GridCell.Tab.1.left/0.23.1792.1017@0.23.1792.1017" timestamp="1589163290849" />
+    <state width="1750" height="332" key="GridCell.Tab.1.left/0.23.1792.1017@0.23.1792.1017" timestamp="1589271167695" />
     <state width="1750" height="332" key="GridCell.Tab.1.left/0.23.1792.1020@0.23.1792.1020" timestamp="1588499921827" />
     <state width="1750" height="332" key="GridCell.Tab.1.left/0.23.1792.1022@0.23.1792.1022" timestamp="1588858709175" />
-    <state width="1750" height="332" key="GridCell.Tab.1.right" timestamp="1589163290850">
+    <state width="1750" height="332" key="GridCell.Tab.1.right" timestamp="1589271167695">
       <screen x="0" y="23" width="1792" height="1017" />
     </state>
-    <state width="1750" height="332" key="GridCell.Tab.1.right/0.23.1792.1017@0.23.1792.1017" timestamp="1589163290850" />
+    <state width="1750" height="332" key="GridCell.Tab.1.right/0.23.1792.1017@0.23.1792.1017" timestamp="1589271167695" />
     <state width="1750" height="332" key="GridCell.Tab.1.right/0.23.1792.1020@0.23.1792.1020" timestamp="1588499921828" />
     <state width="1750" height="332" key="GridCell.Tab.1.right/0.23.1792.1022@0.23.1792.1022" timestamp="1588858709176" />
     <state x="511" y="238" key="NewModule_or_Project.wizard" timestamp="1586973704628">
       <screen x="0" y="23" width="1792" height="1017" />
     </state>
     <state x="511" y="238" key="NewModule_or_Project.wizard/0.23.1792.1017@0.23.1792.1017" timestamp="1586973704628" />
-    <state x="384" y="113" key="SettingsEditor" timestamp="1588851200247">
-      <screen x="0" y="23" width="1792" height="1020" />
+    <state x="384" y="113" key="SettingsEditor" timestamp="1589165334668">
+      <screen x="0" y="23" width="1792" height="1017" />
     </state>
-    <state x="384" y="113" key="SettingsEditor/0.23.1792.1017@0.23.1792.1017" timestamp="1588814803977" />
+    <state x="384" y="113" key="SettingsEditor/0.23.1792.1017@0.23.1792.1017" timestamp="1589165334668" />
     <state x="384" y="113" key="SettingsEditor/0.23.1792.1020@0.23.1792.1020" timestamp="1588851200247" />
-    <state x="496" y="272" key="Vcs.Push.Dialog.v2" timestamp="1588851617503">
-      <screen x="0" y="23" width="1792" height="1022" />
+    <state x="496" y="271" key="Vcs.Push.Dialog.v2" timestamp="1589163875586">
+      <screen x="0" y="23" width="1792" height="1017" />
     </state>
-    <state x="496" y="271" key="Vcs.Push.Dialog.v2/0.23.1792.1017@0.23.1792.1017" timestamp="1587235141350" />
+    <state x="496" y="271" key="Vcs.Push.Dialog.v2/0.23.1792.1017@0.23.1792.1017" timestamp="1589163875586" />
     <state x="496" y="272" key="Vcs.Push.Dialog.v2/0.23.1792.1022@0.23.1792.1022" timestamp="1588851617503" />
     <state x="100" y="123" width="1592" height="817" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1587228264386">
       <screen x="0" y="23" width="1792" height="1017" />
@@ -322,6 +324,10 @@
       <screen x="0" y="23" width="1792" height="1017" />
     </state>
     <state x="684" y="452" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1792.1017@0.23.1792.1017" timestamp="1586967004194" />
+    <state x="688" y="427" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1589163864095">
+      <screen x="0" y="23" width="1792" height="1017" />
+    </state>
+    <state x="688" y="427" key="git4idea.remote.GitConfigureRemotesDialog/0.23.1792.1017@0.23.1792.1017" timestamp="1589163864095" />
     <state width="600" height="428" key="javadoc.popup" timestamp="1587217471893">
       <screen x="0" y="23" width="1792" height="1017" />
     </state>
@@ -349,13 +355,43 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/main/scala/service/MongoApiService.scala</url>
-          <line>53</line>
-          <option name="timeStamp" value="24" />
+          <line>19</line>
+          <option name="timeStamp" value="30" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/main/scala/service/MongoApiService.scala</url>
-          <line>52</line>
-          <option name="timeStamp" value="25" />
+          <line>38</line>
+          <option name="timeStamp" value="31" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="scala-line">
+          <url>file://$PROJECT_DIR$/src/main/scala/service/MongoApiService.scala</url>
+          <line>34</line>
+          <option name="timeStamp" value="32" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="scala-line">
+          <url>file://$PROJECT_DIR$/src/main/scala/authenticator/MongoAuthApi.scala</url>
+          <line>5</line>
+          <option name="timeStamp" value="33" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="scala-line">
+          <url>file://$PROJECT_DIR$/src/main/scala/authenticator/MongoAuthApi.scala</url>
+          <line>7</line>
+          <option name="timeStamp" value="34" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="scala-line">
+          <url>file://$PROJECT_DIR$/src/main/scala/authenticator/MongoAuthApi.scala</url>
+          <line>8</line>
+          <option name="timeStamp" value="36" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="scala-line">
+          <url>file://$PROJECT_DIR$/src/main/scala/authenticator/MongoAuthApi.scala</url>
+          <line>10</line>
+          <option name="timeStamp" value="37" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="scala-line">
+          <url>file://$PROJECT_DIR$/src/main/scala/authenticator/HMAC.scala</url>
+          <line>16</line>
+          <option name="timeStamp" value="42" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

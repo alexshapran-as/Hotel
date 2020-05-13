@@ -14,7 +14,7 @@ object Boot {
     Http().bindAndHandle(MainApiService.routingStart, confApiServiceInterface, confApiServicePort)
     println(s"Hotel admin page: http://$confApiServiceInterface:$confApiServicePort/hotel/admin/start_page")
     println(s"Hotel manager page: http://$confApiServiceInterface:$confApiServicePort/hotel/manager/start_page")
-    println(s"Hotel manager page: http://$confApiServiceInterface:$confApiServicePort/hotel/staff/start_page")
-    println(s"Hotel manager page: http://$confApiServiceInterface:$confApiServicePort/hotel/visitor/start_page")
+    println(s"Hotel staff page: http://$confApiServiceInterface:$confApiServicePort/hotel/staff/start_page")
+    println(s"Hotel visitor page: http://$confApiServiceInterface:$confApiServicePort/hotel/visitor/start_page")
   }
 }

@@ -26,7 +26,6 @@ object MongoApiService extends HttpRouteUtils with Directives {
                         }
                       case _ =>
                         println("Authorization for 30 sec")
-//                        logger.info("Authorization for 30 sec")
                         setOneLogInSession(UserSessionData(userName, roles)) {
                           complete(getOkResponse)
                         }
@@ -45,7 +44,6 @@ object MongoApiService extends HttpRouteUtils with Directives {
             post("logout") {
               invalidateRequiredSession { ctx =>
                 println(s"Logging out $session")
-                //              logger.info(s"Logging out $session")
                 ctx.complete(getOkResponse)
               }
             } ~
