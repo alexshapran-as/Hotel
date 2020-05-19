@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"common.fs.files"},{"v":{"$numberInt":"2"},"key":{"filename":{"$numberInt":"1"},"uploadDate":{"$numberInt":"1"}},"name":"filename_1_uploadDate_1","ns":"common.fs.files"}],"uuid":"e6217517a6be49a8b0c43d5524c0f8b8"}

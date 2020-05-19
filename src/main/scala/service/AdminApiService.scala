@@ -172,7 +172,7 @@ object AdminApiService extends HttpRouteUtils with Directives {
                             complete(getOkResponse(roomsList))
                         } ~
                         post("reservations_list") {
-                            val roomsList: List[MSA] = Room.findAllRoomsMSA.filter(msa => msa("reservations").asInstanceOf[List[MSA]].nonEmpty).foldLeft(List.empty[MSA]) { (newRoomsList, msa) =>
+                            val roomsList: List[MSA] = Room.findAllRoomsWithNotNullReservationsMSA.foldLeft(List.empty[MSA]) { (newRoomsList, msa) =>
                                 newRoomsList ++ msa("reservations").asInstanceOf[List[MSA]].foldLeft(List.empty[MSA]) { (newListMsa, reservationMsa) =>
                                     val reservation = RoomReservation.fromMSA(reservationMsa)
                                     val (checkInDate, checkOutDate) = (reservation.checkInDate, reservation.checkOutDate)
@@ -198,7 +198,7 @@ object AdminApiService extends HttpRouteUtils with Directives {
                         } ~
                         post("accommodation_info_list") {
                             val currentDateMillis = Utils.getDayStartInMillis(System.currentTimeMillis())
-                            val roomsList: List[MSA] = Room.findAllRoomsMSA.filter { msa =>
+                            val roomsList: List[MSA] = Room.findAllRoomsWithNotNullReservationsMSA.filter { msa =>
                                 msa("reservations").asInstanceOf[List[MSA]] match {
                                     case List() =>
                                         false
@@ -273,7 +273,7 @@ object AdminApiService extends HttpRouteUtils with Directives {
                         } ~
                         post("busy_rooms_list") {
                             val currentDateMillis = Utils.getDayStartInMillis(System.currentTimeMillis())
-                            val roomsList = Room.findAllRoomsMSA.filter { msa =>
+                            val roomsList = Room.findAllRoomsWithNotNullReservationsMSA.filter { msa =>
                                 msa("reservations").asInstanceOf[List[MSA]] match {
                                     case List() =>
                                         false

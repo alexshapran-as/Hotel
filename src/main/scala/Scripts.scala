@@ -18,18 +18,18 @@ object CreateAdmin {
 
 object CreateRooms {
   def main(args: Array[String]): Unit = {
-//    Room(
-//      description = Some("Тестовый номер 1"),
-//      roomClass = RoomClass.Deluxe,
-//      seatsNumber = 6,
-//      options = RoomOptions(
-//        fridge = true,
-//        miniBar = true,
-//        tv = true,
-//        seaView = true
-//      ),
-//      defaultCostPerNight = 10000.0
-//    ).save
+    Room(
+      description = Some("Номер 101"),
+      roomClass = RoomClass.STD,
+      seatsNumber = 2,
+      options = RoomOptions(
+        fridge = true,
+        miniBar = true,
+        tv = true,
+        seaView = true
+      ),
+      defaultCostPerNight = 10000.0
+    ).save
 //    Room(
 //      description = Some("Тестовый номер 2"),
 //      roomClass = RoomClass.STD,

@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"recon_service.email_config"}],"uuid":"111297acee53443b9258d6363f5d7f71"}

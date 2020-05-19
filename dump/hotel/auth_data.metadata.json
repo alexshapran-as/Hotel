@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"hotel.auth_data"}],"uuid":"7f004f4a80f6476c8fc6fb63fda32ccc"}

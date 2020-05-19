@@ -92,6 +92,9 @@ object MainDAO {
   def getAllRoomsMSA: List[MSA] =
     roomsColl.find().map(x => dbo2map(x)).toList
 
+  def getAllReservationsMSA: List[MSA] =
+    roomsColl.find("reservations" $ne List()).map(x => dbo2map(x)).toList
+
   def tryToGetRoom(roomId: String): Option[Room] = {
     roomsColl.findOne("_id" $eq roomId).map(roomMSA => Room.fromMSA(dbo2map(roomMSA)))
   }

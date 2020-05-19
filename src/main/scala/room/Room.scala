@@ -113,7 +113,11 @@ case class Room(
         "seatsNumber" -> seatsNumber,
         "options" -> options.toMSA,
         "defaultCostPerNight" -> defaultCostPerNight,
-        "reservations" -> reservations.map { reservation => reservation.toMSA ++ Map("totalCost" -> calculateRoomCost(reservation.extraOptions, reservation.client))}
+        "reservations" -> reservations.map { reservation =>
+            val countOfDays = Utils.getAllPartsOfDateAsMap(Utils.formattedDateToMillis(reservation.checkOutDate), "checkOutDate")("checkOutDate.day").toLong -
+                Utils.getAllPartsOfDateAsMap(Utils.formattedDateToMillis(reservation.checkInDate), "checkInDate")("checkInDate.day").toLong
+            reservation.toMSA ++ Map("totalCost" -> calculateRoomCost(reservation.extraOptions, reservation.client) * (countOfDays + 1))
+        }
     )
 
     def save = MainDAO.saveRoom(id, this.toMSA)
@@ -135,6 +139,8 @@ case object Room {
     def findAllRooms: List[Room] = MainDAO.getAllRooms
 
     def findAllRoomsMSA: List[MSA] = MainDAO.getAllRoomsMSA
+
+    def findAllRoomsWithNotNullReservationsMSA: List[MSA] = MainDAO.getAllReservationsMSA
 
     def findRoomById(roomId: String): Room = MainDAO.getRoom(roomId)
 }
