@@ -1,1 +1,0 @@
-{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"recon_service.user_logs"},{"v":{"$numberInt":"2"},"key":{"login":{"$numberInt":"1"},"_t":{"$numberInt":"1"}},"name":"login_1__t_1","ns":"recon_service.user_logs","background":true}],"uuid":"c49ca46107694219b256d0ede926739e"}
